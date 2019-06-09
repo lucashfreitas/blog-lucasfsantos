@@ -90,10 +90,6 @@ workflows:
       - flow-typed:
           requires:
             - install
-      - lint:
-          requires:
-            - flow-typed
-            - install
       - test:
           requires:
             - install
