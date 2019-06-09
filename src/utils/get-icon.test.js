@@ -9,4 +9,7 @@ test('getIcon', () => {
   expect(getIcon('telegram')).toEqual(ICONS.TELEGRAM);
   expect(getIcon('email')).toEqual(ICONS.EMAIL);
   expect(getIcon('rss')).toEqual(ICONS.RSS);
+  expect(getIcon('stackoverflow')).toEqual(ICONS.STACKOVERFLOW);
+  expect(getIcon('linkedin')).toEqual(ICONS.LINKEDIN);
+  expect(getIcon('medium')).toEqual(ICONS.MEDIUM);
 });

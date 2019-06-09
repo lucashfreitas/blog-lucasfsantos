@@ -3,8 +3,8 @@
 module.exports = {
   url: 'https://lucasfsantos.com',
   title: 'Blog by Lucas Santos',
-  subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
-  copyright: '© All rights reserved.',
+  subtitle: 'Lucas Santos Full Stack Software Developer',
+  copyright: 'Lucas Santos © All rights reserved.',
   disqusShortname: '',
   postsPerPage: 5,
   googleAnalyticsId: 'UA-141668818-1',
@@ -24,15 +24,16 @@ module.exports = {
   ],
   author: {
     name: 'Lucas Santos',
-    photo: '/photo.jpg',
-    bio: 'Software Developer',
+    photo: '/photo.png',
+    bio: 'Knowledge is one of the most valuable things in the world. Share it is one of the best ways to learn and make world a better place to live!',
     contacts: {
-      email: 'contact@lucasfsantos.com',
-      telegram: '#',
-      twitter: 'https://twitter.com/lucashfrsantos',
-      github: 'https://github.com/lucashfreitas',
-      rss: '#',
-      vkontakte: '#'
+      stackoverflow: 'https://stackoverflow.com/users/6506171/lucas-santos',
+      linkedin: 'https://www.linkedin.com/in/lucas-freitas-santos/',
+      medium: 'lucashfreitas1',
+      email: 'lucashfreitas1@gmail.com',
+      twitter: 'lucashfrsantos',
+      github: 'lucashfreitas',
+
     }
   }
 };
