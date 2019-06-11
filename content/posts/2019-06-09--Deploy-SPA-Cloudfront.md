@@ -145,7 +145,7 @@ Please do not forget to read this article and understand how cache works in Clou
 
 Okay, let's finally get in action. I hope you guys not feeling overwhelmed.
 
-# STEP 2 - Create S3 Bucket, make it public read access and enable static website hosting
+# Create S3 Bucket, make it public read access and enable static website hosting
 
 Using AWS Web Console, access S3 Service and create a new bucket. Then click on the bucket and access the permission tabs to make it public:
 Click in public access settings and make sure that all four options are set to false.
@@ -170,3 +170,273 @@ Access the Bucket Policy Tab and copy this policy below which will make the file
 ```
 
 Now go under Properties and select **static website hosting** and set `index.html` for both index and error document. I'll explain later why we should always set index.html as index document for both error and index document.
+
+![s3-static-hosting-index-document](/media/s3-static-website-hosting.png "S3 Bucket index document")
+
+All done! Now we moving forward to build our web app and generate static files.
+
+# Build Web App
+
+I am not gonna dive deep into this as we have a lot of options to generate website build assets, we have a lot to discuss and optimize the build process, reduce bundle size, lazy loading & code splitting, etc, but I am not gonna go through it now.
+
+If you are using angular cli, its come with a built-in solution and all you need to do its run the command `ng build --prod` to generate your web application folder.
+If you are using react js, create-react-app has also a built-in solution to generate your web-app: `npm run build`.
+
+As I mentioned before the most part of these tools use webpack under the hood.
+
+The main thing that we should be concerned about what kind of files your website have and also which ones should be cached (most part of them, including javascript files, images, css, etc) and which ones we should avoid to caching (as index.html, serviceWorker.js). The most part of tools generate a new js/css filenames after a new deployment, so we don't need to worry about adding a new query string to the scripts to force browsers to download new content.
+
+# Install and configure AWS CLI
+
+The [AWS Command Line Interface - AWS CLI](https://aws.amazon.com/cli/) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.- _Definition from aws website._
+
+As I mentioned before, all that we are doing using AWS Web Console Interface can be done automatically using aws-cli. We could use it to create the bucket, CloudFront distribution, etc. In this case, we will use aws CLI only to **upload files** to S3 bucket and **send invalidation** request to CloudFront. It requires python to be installed. 
+
+Open terminal and type:
+
+`pip install awscli`
+
+For more information on how to install please access [AWS - How to install aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+
+Now we need to create a user and assign permission to upload files to the bucket and send CloudFront invalidation requests. We will need to access [AWS IAM] (https://console.aws.amazon.com/iam) ( Identity and Access Management) to create a user and get AWS Keys credential to use aws-cli.
+
+Basically, when you create a user AWS allows us to generate a key pair, then we can use it later to manage aws services using aws-cli. We need to assign permissions for the user, then the key pair set up in aws-cli will have same permissions of this user. We can set permission for a user assigning them to a group or attaching a specific policy. For this tutorial, we will create a policy with permission to upload files to S3 Bucket and send CloudFront invalidation request.
+
+So, follow the steps below to create the user and get the key:
+
+1. **Access AWS IAM Management Console.**
+
+2. **Create a policy to be attached to the user later.**
+
+Access tab POLICIES and click on Create Policy. We'll define policy permissions using a JSON File configuration. Please copy JSON content below under JSON tab when creating the policy. This policy will have permission to list the s3 buckets, upload files and send CloudFront invalidation request. Please remember to replace my-bucket with your bucket name before saving the policy.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucketMultipartUploads",
+                "s3:ListBucket",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name"
+                ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObjectAcl",
+                "s3:GetObject",
+                "s3:AbortMultipartUpload",
+                "s3:DeleteObjectVersion",
+                "s3:PutObjectVersionAcl",
+                "s3:GetObjectVersionAcl",
+                "s3:DeleteObject",
+                "s3:PutObjectAcl",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListAllMyBuckets",
+            "Resource": "*"
+        },
+         {
+            "Effect": "Allow",
+            "Action": [
+            "cloudfront:CreateInvalidation"
+           ],
+            "Resource": "*"
+        }
+    ]
+}
+
+```
+
+3. **Access the tab "Users" and click on "Add User"**
+
+4. **Select the option Programmatic access (needed to generate a key pair value)**
+
+![aws-iam-create-key-access](/media/iam-programmatic-access.png "AWS IAM Create Access Key")
+
+Save the user and copy your key pair value.
+
+**Note:** _Keep this key safe, because whoever has it will have permission to delete/upload files to your bucket. Do not upload this key to your repository and keep the key value secret when using docker or another continuous integration tool._
+
+5. **For last, attach the policy to the user.**
+
+Under user permission section, select **Attach Existing Policies directly**, then click in filter policies and select only **Customer Managed Policies**. Select the policy that you have created and save it.
+
+Now we need to configure aws-cli to add the key that we just have created. Open your terminal and type:
+
+`aws configure`
+
+You will be prompted to inform your access key and your secret key and the region which your bucket is located. Just copy & paste the user key and inform the region (e.g us-east-1, us-west-1).
+
+Now we ready to upload files to the bucket.
+
+# Upload files to the bucket using correct cache headers
+
+I've mentioned before that we need to be aware of using cache headers and also understood that we need to deal with two kinds of cache:
+
+* **Browser Caching:** More critical
+* **CloudFront caching:** Less critical and longer.
+
+Please before proceed have a look at this [aws article](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) and board provided in aws website to understand how cache works in the edges and in browser:
+
+![cloudfront-browser-cache](/media/cloudfront-browser-caching.png "Cloudfront Cache Rules")
+
+In the next step, we'll create CloudFront and set up **Default**, **Minimum** and **Max** TTL to 31536000 seconds (1 year).
+
+* Cache on CloudFront value will be 31536000 seconds (1 year): Objects will be cached on cloudfront edge "forever" until we send an invalidation request after a new deployment,
+
+* Cache on user browser will be for 1 day: max-age=86400000 milliseconds.
+
+The first command will upload all files to the bucket and set the cache headers (`max-age 86400000–1 day`). This cache header will be delivered to the browser, then it will be cached for 1 day. We do have other cache options as expire, but in this example, we'll use only `max-age`. (_Do not hesitate to have a look at this [mark nottingham article](https://www.mnot.net/cache_docs/) about how cache headers work on browsers_).
+
+The first command will be `aws sync with - delete option`. This basically will upload your website build files to the bucket and remove everything which is on the bucket but not on your build folder and replace/addfiles which have changed or added. You have many possible combinations to aws s3 sync command, for example -exclude directive, when you do not want to upload a specific file or folder from your build folder. Please have a look at [AWS CLI Sync Command](https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html) to get all possible methods.
+
+```
+aws s3 sync --delete  YOUR_WEBSITE_BUILD_FOLDER/ s3://YOUR_BUCKET_NAME --acl public-read --cache-control max-age=86400000,public
+
+```
+
+Now we need to remove cache headers of index.html files. With this script we update cache header (`max-age=0,must-revalidate,public - content-type`) and charset of all HTML files in the build folder. (If you need to cache others html files, just change the -include directive in command)
+
+```
+aws s3 cp s3://YOUR_BUCKET_NAME s3://YOUR_BUCKET_NAME --recursive --include \"*.html\" --metadata-directive REPLACE --acl public-read --cache-control max-age=0,must-revalidate,public --content-type \"text/html; charset=utf-8\"
+```
+**Note:** We'll create an npm script in package.json file with will execute all of this commands automatically.
+Now all the files are already in the bucket. Now we will create our CloudFront distribution.
+
+# Create CloudFront distribution
+
+![cloudfront-create-distribution](/media/route53-create-cloudfront-distribution.png "Cloudfront Create Distribution")
+
+**In Origin Domain Name**  select the bucket that you've previously created.
+**Viewer Protocol Policy:** Redirect HTTP to HTTPS
+**Object Caching:** Select customize and fill value 31536000 for Minimum, Default and Maximum TTL.
+**Compress objects automatically:** Select yes, this will serve your content with gzip compression.
+
+
+![cloudfront-distribution-settings](/media/cloudfront-distribution-settings.png "Cloudfront Distribution Settings")
+
+**Distribution Price Class:** Select where you want to have edges serving your content. Please check the [AWS Calculator] (https://calculator.s3.amazonaws.com/calc5.html).
+
+**Alternative Domain Names:** Fill with the domain name that will be associated with your website. Don't forget to fill because we will need to use it later on Route53.
+
+**SSL Certificate:** Leave it as Default Cloudfront Certificate for now. I'll show how to create a SSL certificate for your CloudFront distribution in the next section.
+
+**Security Policy:** TLSv1.1_2016 (recommended). This is SSL/TLS protocol that CloudFront uses to encrypt the content that it returns to the user. Please have a look at [AWS - Connection ciphers](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html#secure-connections-supported-ciphers) to understand what is the differences between all of them and why you should use the recommended.
+
+**Supported HTTP Versions**: HTTP/2, HTTP/1.1, HTTP/1.0
+
+**Default Root Object:** `index.html`. This will be the entry point of your application. When some user accesses your website with some path in URL (e.g. mysite.com/path/otherpath) it will deliver index.html. Cloudfront does not know the information of this path/route as all routes of your single page application are being resolved by our front framework router (e.g React router, angular router module). When the application is loaded by the browser it will load correctly route.
+
+**Distribution State:** Enabled
+
+
+![cloudfront-distribution-settings-2](/media/cloudfront-distribution-settings-2.png "Cloudfront Distribution Settings 2")
+
+Now your distribution is ready and in few minutes it will be accessible through CloudFront default address which will be something like `d45das8dnasdhy13d.cloudfront.net`.
+
+You can also find your distribution-id in cloudfront distribution list. You'll need it to send invalidation request.
+
+## Invalidation Request
+
+As mentioned before, every time after a new deployment we need to send an invalidation to purge the cloudfront cache. It will be done easily using the command:
+
+```
+aws cloudfront create-invalidation - distribution-id ${distributionId} - paths \"/*\"
+```
+
+# CloudFront configuration: Custom SSL and attach custom domain to distribution
+
+We need to do two more tasks:
+
+* set some rules for 403 and 404 responses
+* create an SSL certificate for CloudFront and attach it to a custom domain.
+
+1. **Configuring errors responses:**
+
+As I mentioned before, CloudFront does not know whether a specific path route exists or not. All the routes information sits on the front end code (eg. react router, angular router module), so if the user accesses your website using some path, for example, `mywebsite.com/path/secondpath` when CloudFront redirects this request to the bucket, it will return 403 response as it does not know reconizge this path (also it does not exists on bucket), but it still has to deliver index.html file to the user and leave it for frontend framework resolves if route exists or not.
+
+To solve that, we need to set custom error responses for 403, 404 responses. For that, access the Error Pages tab in your CloudFront distribution and add two error response errors for http 403 and http 404 status code. All of them should have response page path as `index.html` and we can use Minimum Caching TTL sx 300 and response code as 200. The result should be something like the image below:
+
+
+![cloudfront-error-page-settings](/media/cloudfront-error-page-settings.png "Cloudfront Error Page Settings")
+
+>> **Note:** Many people misunderstand why do we need to add this custom error responses and this could be tricky for SEO Optmization.
+If some route or path not exists, your website should return 404 response code. This example and many SPA returns http 200 status code even if the route does not exists. If you are using server side rendering you can easily solve this problem, otherwise we can use AWS Lambda do deal with that. I'll talk more about it and how we can handle that and also deliver pre rendered content using AWS Lambda + Cloudfront.
+
+2. **Setting up an SSL Certificate and Custom Domain using ROUTE 53:**
+
+AWS allows creating free SSL certificate to be used across its services. Access aws certificate manager(https://console.aws.amazon.com/acm/home) and add a new certificate.
+
+![request-cloudfront-ssl-certificate](/media/request-ssl-certificate.png "Cloudfront Request SSL")
+
+Add your domain names and clicks in add. You can add multiple domain names to be included in SSL Certificate, e.g. (`www.yourwebsite.com`, `*.yourwebsite.com`).
+
+After that, you have to VALIDATE your certificate using the dns entries of your domains or the domain owner email address. Just follow the instructions and validate it.
+
+If you choose to validate using the domain owner AWS will send a link to the email, then you just need to access it and SSL will be validated.
+
+If you choose to validate using your DNS Address, just add the CNAME entries in your domain record as it recommends, then wait a few minutes and click on the refresh icon. Then your domain will be validated and you will be able to proceed with SSL creation.
+
+>>**Note:**If you are using Route53 it allows you to automatically add the same entry in your hosted zone. I am not diving into how to use route53 , but get in touch if you have any question: )
+
+## Setting up an SSL Certificate and Custom Domain using ROUTE 53:
+
+Now we need to create an entry in our domain to point for our CloudFront distribution. Essentially you have to create a CNAME entry in your domain pointing to CloudFront distribution, but I've faced some problems in adding a **CNAME in the root domain.**
+
+Let's supose your website is `www.example.com`, if you add a CNAME entry for `*.example.com` (root domain) it will create a conflict with google domain email entries for example. I've faced this issue and after a long time researching I found out that AWS provides an ALIAS entry in Route53 to be used for these situations, solving my problem.
+
+I strongly recommend using Route53 as your domain provider, because it is really reliable and easy to use.
+
+Access your route53 hosted zone and create a new record set. Insert the domain name and select ALIAS option. After that, Alias Target option will list all AWS available services to be attached to the domain.
+
+If you set up ALTERNATIVE CNAMES correctly when creating the CloudFront distribution, it will be available under CloudFront distribution. Please see image below (In your case the cloudfront distribution should be available for selection):
+
+![route53-create-record-set](/media/route53-create-record-set.png "Route 53 Record Set")
+
+After that, go back to your CloudFront distribution, clicks in 'Edit' and select the SSL Certificate to your distribution
+
+![aws-certificate-manager-custom-ssl](/media/aws-certificate-manager-custom-ssl.png "AWS Certificate Manager Custom SSL")
+
+Finally, everything should be ready and your website should be accessible 7 your custom domain and with secure SSL Certificate.
+
+# Review & Next Steps.
+
+So, now we have learned how to create and set up a single page application using AWS CloudFront.
+
+Basically, you can have a simple npm script defined in `package.json` that will run the commands to deploy your website:
+
+1. First command will build your web application.,
+
+2. Second command you upload the files to S3 Bucket.
+
+3. The third command will change cache headers of html files.
+
+4. The fourth and last command will send an invalidation request to purge the cloudfront cache.
+
+We still have a lot to improve and discuss, for example:
+* How to pre render content for SEO optimization,
+* How to integrate this deployment using CI/CD (continuous delivery & deployment)
+* How to set up everything (bucket and cloudfront creation, ssl, etc) using aws-cli.
+* Limitations of this deployment method.
+
+I have plans to talk about [AWS Lambda](https://aws.amazon.com/lambda/) and how it can be powerful when used together Cloudfront and how to optimize it for SEO.
+Hope this article has been useful for you. 
+
+Most of the codebase used is available at this repository: https://github.com/lucashfreitas/react-angular-deploy-s3-cloudfront. I'll update it as soon as possible :)
+
+Feel free to share and comment if you have any question or suggestion!
+
+Cheers!
