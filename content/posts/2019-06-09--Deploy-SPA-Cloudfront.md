@@ -140,7 +140,7 @@ Please do not forget to read this article and understand how cache works in Clou
 
 Okay, let's finally get in action. I hope you guys not feeling overwhelmed.
 
-# STEP 2 - Create S3 Bucket, make it public read access and enable static website hosting
+# Create S3 Bucket, make it public read access and enable static website hosting
 
 Using AWS Web Console, access S3 Service and create a new bucket. Then click on the bucket and access the permission tabs to make it public:
 Click in public access settings and make sure that all four options are set to false.
@@ -170,7 +170,7 @@ Now go under Properties and select **static website hosting** and set `index.htm
 
 All done! Now we moving forward to build our web app and generate static files.
 
-# STEP 3 - Build Web App
+# Build Web App
 
 I am not gonna dive deep into this as we have a lot of options to generate website build assets, we have a lot to discuss and optimize the build process, reduce bundle size, lazy loading & code splitting, etc, but I am not gonna go through it now.
 
@@ -181,7 +181,7 @@ As I mentioned before the most part of these tools use webpack under the hood.
 
 The main thing that we should be concerned about what kind of files your website have and also which ones should be cached (most part of them, including javascript files, images, css, etc) and which ones we should avoid to caching (as index.html, serviceWorker.js). The most part of tools generate a new js/css filenames after a new deployment, so we don't need to worry about adding a new query string to the scripts to force browsers to download new content.
 
-# STEP 4 - Install and configure AWS CLI
+# Install and configure AWS CLI
 
 The [AWS Command Line Interface - AWS CLI](https://aws.amazon.com/cli/) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.- _Definition from aws website._
 
@@ -277,7 +277,7 @@ You will be prompted to inform your access key and your secret key and the regio
 
 Now we ready to upload files to the bucket.
 
-# STEP 5 - Upload files to the bucket using correct cache headers
+# Upload files to the bucket using correct cache headers
 
 I've mentioned before that we need to be aware of using cache headers and also understood that we need to deal with two kinds of cache:
 
@@ -311,7 +311,7 @@ aws s3 cp s3://YOUR_BUCKET_NAME s3://YOUR_BUCKET_NAME --recursive --include \"*.
 **Note:** We'll create an npm script in package.json file with will execute all of this commands automatically.
 Now all the files are already in the bucket. Now we will create our CloudFront distribution.
 
-# STEP 6 - Create CloudFront distribution
+# Create CloudFront distribution
 
 ![cloudfront-create-distribution](/media/route53-create-cloudfront-distribution.png "Cloudfront Create Distribution")
 
@@ -352,7 +352,7 @@ As mentioned before, every time after a new deployment we need to send an invali
 aws cloudfront create-invalidation - distribution-id ${distributionId} - paths \"/*\"
 ```
 
-# STEP 7 - CloudFront configuration: Custom SSL and attach custom domain to distribution
+# CloudFront configuration: Custom SSL and attach custom domain to distribution
 
 We need to do two more tasks:
 
@@ -407,7 +407,7 @@ After that, go back to your CloudFront distribution, clicks in 'Edit' and select
 
 Finally, everything should be ready and your website should be accessible 7 your custom domain and with secure SSL Certificate.
 
-# STEP 8- Review & Next Steps.
+# Review & Next Steps.
 
 So, now we have learned how to create and set up a single page application using AWS CloudFront.
 
