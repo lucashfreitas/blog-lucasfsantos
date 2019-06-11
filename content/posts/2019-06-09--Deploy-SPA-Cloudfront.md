@@ -13,8 +13,6 @@ category: Web Development
 tags:
   - ''
 ---
-
-
 We have a sort of different providers to host those web apps. (Heroku, netfly, cloudfare, akamai, etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront
 
 It's not new that many web application nowadays is SPA (Single Page Application) and it tends to grow a lot.
@@ -104,9 +102,66 @@ Basically, Cloudfront CDN will serve your website content across different regio
 
 ![Cloudfront Edges](/media/cf-locations.png "Cloudfront Edges Location")
 
-
-
 ## How CloudFront works and what is the relationship with S3?
 
 Let's now dive into the relationship between CloudFront and S3. Please have a look at the image below:
 
+![how-cloudfront-s3-works](/media/how-cloudfront-s3-works.png "How Cloudfront Works")
+
+* Users requests are always delivered from CloudFront edges.
+
+* The website content is always cached on the CloudFront edges.
+
+* Usually, the content will be cached in edge for longer times because we have control and we can easily purge CloudFront cache anytime and force it to fetch the updated content from S3 Bucket and cache it again. This will happen after every new deployment.
+
+* When a user sends a request to your website, CloudFront checks if the file is on the edge cache, if yes it will hand it over straightaway, otherwise it will send the request for origin (S3 bucket), then cache it on the edge again. (_This will happens typically when we send an invalidation request after a new deployment_).
+
+* You can see whether the requested file came from CloudFront edge cache or not, inspecting the response HTTP header **X-CACHE** property. In the case below, **Miss from CloudFront** means that file was not found on cache, so we know that CloudFront requested the file to the bucket.
+
+![cloudfront-x-cache-miss](/media/cloudfront-headers.png "Cloudfront X-Cache Miss")
+
+In the next image, the returned `x-cached`  **Hit from CloudFront** means that file was found on cache, so CloudFront just delivers it
+
+![cloudfront-x-cache-header](/media/cloudfront-x-cache.png "Cloudfront X-Cache Header")
+
+Essentially, **Hit from Cloudfront** should be always more frequent then **Miss**. You can see cache statics of your distribution to troubleshoot cache issues.
+
+* Is important to understand the **relationship between cloudfront and S3 Bucket**. Basically, S3 bucket(Origin) deliveries our website content to the CloudFront edges and then the edge will cache it. CloudFront will request files to the bucket again **only if** has not it on the cache or the cache time has been expired. We'll see later why it's important to invalidate CloudFront distributions after a new deployment (_which means purge cache in edges_)
+
+* We've talked before about **caching on user browsers**, now we're talking about **cache on CloudFront edges**. Dealing with cache in users browsers is a way more critical than dealing with cache in CloudFront edges, because we can't purge cache in user browsers whenever we want, once the file is cached in user browser, it will be purged only when it expires or when user clear the cache, because of that is really important to be careful when setting cache for your website files.
+
+* We set all cache headers at the moment that we upload the files to the bucket using **aws-cli**, we'll go through this in the next step.
+
+* If you set the cache headers for users browsers correctly you might reduce **your CloudFront cost drastically**. As you pay per requests, if you cache the files in users browsers, it will be requested to the server again only when cache expires or a new deployment have been done. Let's suppose that you cached your website's files for 24 hours and the same user visited your websites 30 times in a day. On the first visit, the browser will request every single file from server and caches it on the browser. Then in next requests, the only content that user browser will request to the server will be the `index.html`.
+
+>> Let's suppose that a user loads your website 100 times per day, in the first request he will send requests to load a lot files (index.html, javascript, css, images, fonts, index.html). After that, the other 99 requests will request only the index.html from the server (as we not cache it). So you will reduce your cost drastically
+
+Please do not forget to read this article and understand how cache works in CloudFront edge and in browsers. We'll go forward on that in step 5. [AWS - Cloudfront and Browser Caching](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html) 
+
+Okay, let's finally get in action. I hope you guys not feeling overwhelmed.
+
+# STEP 2 - Create S3 Bucket, make it public read access and enable static website hosting
+
+Using AWS Web Console, access S3 Service and create a new bucket. Then click on the bucket and access the permission tabs to make it public:
+Click in public access settings and make sure that all four options are set to false.
+
+![s3-bucket-enable-public-access](/media/s3-bucket-public-access.png "S3 Bucket enable public access")
+
+Access the Bucket Policy Tab and copy this policy below which will make the files of your bucket public (replace your-bucket-name with your bucket name):
+
+```json
+{
+ "Version": "2012–10–17",
+ "Statement": [
+ {
+ "Sid": "PublicReadGetObject",
+ "Effect": "Allow",
+ "Principal": "*",
+ "Action": "s3:GetObject",
+ "Resource": "arn:aws:s3:::your-bucket-name/*"
+ }
+ ]
+}
+```
+
+Now go under Properties and select **static website hosting** and set `index.html` for both index and error document. I'll explain later why we should always set index.html as index document for both error and index document.
