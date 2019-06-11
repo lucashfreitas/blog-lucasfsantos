@@ -11,7 +11,12 @@ description: >-
   deploy your web app in a few minutes using AWS S3 & CloudFront
 category: Web Development
 tags:
-  - ''
+  - 'React'
+  - 'Angular'
+  - 'Vue'
+  - 'Web Development'
+  - 'AWS'
+  - 'Cloudfront'
 ---
 We have a sort of different providers to host those web apps. (Heroku, netfly, cloudfare, akamai, etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront
 
