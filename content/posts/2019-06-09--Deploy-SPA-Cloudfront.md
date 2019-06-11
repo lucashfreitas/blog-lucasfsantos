@@ -3,12 +3,10 @@ template: post
 title: Deploying Single Page Applications to AWS Cloudfront
 slug: /posts/deploy-react-angular-cloudfront/
 draft: false
-date: '2019-06-09'
-description: >-
-  We have a sort of different providers to host those web apps. (Heroku, netfly,
-  cloudfare, akamai, etc) and a lot of frameworks to develop it (React, Vue,
-  Angular, etc). In this article, I will show how it's easy, simple and cheap to
-  deploy your web app in a few minutes using AWS S3 & CloudFront
+date: '2019-04-09'
+description:
+  We have a sort of different providers to host those web apps. (AWS Amplify,Heroku, Netlify,
+  Cloudfare, Akamai, etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront.
 category: Web Development
 tags:
   - 'React'
@@ -21,7 +19,7 @@ tags:
 We have a sort of different providers to host those web apps. (Heroku, netfly, cloudfare, akamai, etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront
 
 It's not new that many web application nowadays is SPA (Single Page Application) and it tends to grow a lot.
-We have a sort of different providers to host those web apps. ([Heroku](https://www.heroku.com/), [Netfly](https://www.netlify.com/), [Cloudfare](https://www.cloudflare.com/), [Akamai](https://www.akamai.com/), etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront.
+We have a sort of different providers to host those web apps. ([AWS Amplify](https://aws.amazon.com/amplify/),  [Heroku](https://www.heroku.com/), [Netlify](https://www.netlify.com/), [Cloudfare](https://www.cloudflare.com/), [Akamai](https://www.akamai.com/), etc) and a lot of frameworks to develop it (React, Vue, Angular, etc). In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront.
 I presume you have basic knowledge about AWS before reading this article, if I am wrong, no worries, just do a quick google and you'll find a lot of content. If you are not using AWS, you might find the content about cache useful :)
 Note: For this tutorial, we'll follow all steps using AWS Web console interface, although it can be easily done using automatic tools as such as aws-cli, aws cloud formation, etc.
 
