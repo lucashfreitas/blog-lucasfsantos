@@ -1,6 +1,8 @@
 ---
-title: "About me"
-template: "page"
+template: page
+title: About me
+slug: about-me
+draft: false
 ---
 
 Hi There :)
