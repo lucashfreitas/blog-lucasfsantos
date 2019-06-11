@@ -181,7 +181,7 @@ As I mentioned before the most part of these tools use webpack under the hood.
 
 The main thing that we should be concerned about what kind of files your website have and also which ones should be cached (most part of them, including javascript files, images, css, etc) and which ones we should avoid to caching (as index.html, serviceWorker.js). The most part of tools generate a new js/css filenames after a new deployment, so we don't need to worry about adding a new query string to the scripts to force browsers to download new content.
 
-# STEP 4 - Build Web App
+# STEP 4 - Install and configure AWS CLI
 
 The [AWS Command Line Interface - AWS CLI](https://aws.amazon.com/cli/) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.- _Definition from aws website._
 
