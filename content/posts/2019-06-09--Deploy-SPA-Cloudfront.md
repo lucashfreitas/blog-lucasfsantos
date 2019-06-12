@@ -198,7 +198,7 @@ Open terminal and type:
 
 For more information on how to install please access [AWS - How to install aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 
-Now we need to create a user and assign permission to upload files to the bucket and send CloudFront invalidation requests. We will need to access [AWS IAM] (https://console.aws.amazon.com/iam) ( Identity and Access Management) to create a user and get AWS Keys credential to use aws-cli.
+Now we need to create a user and assign permission to upload files to the bucket and send CloudFront invalidation requests. We will need to access [AWS IAM](https://console.aws.amazon.com/iam) ( Identity and Access Management) to create a user and get AWS Keys credential to use aws-cli.
 
 Basically, when you create a user AWS allows us to generate a key pair, then we can use it later to manage aws services using aws-cli. We need to assign permissions for the user, then the key pair set up in aws-cli will have same permissions of this user. We can set permission for a user assigning them to a group or attaching a specific policy. For this tutorial, we will create a policy with permission to upload files to S3 Bucket and send CloudFront invalidation request.
 
