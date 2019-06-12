@@ -63,13 +63,13 @@ We’ll create and setup our cloudfront distribution and learn how to send an in
 
 We’ll talk about how can we manage our aws cloud resource using automatic tools as aws-cli/aws-cloud formation and how to implement continuous integration/deployment. Also I’ve plans to talk more about AWS Lambda and how it can be really powerful using together cloudfront.
 
-# Caching, CDN, Cloudfront & S3
+## Caching, CDN, Cloudfront & S3
 
 **What is AWS S3**? As described by AWS - is a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web. Basically, you can store objects and access them through HTTP requests.
 
 A Single Page Application (_a.k.a SPA_) is nothing but a bunch of files including javascript, css, fonts, images,html files, etc and usually has an entry point (**index.html**) which contains all entries and reference to all needed scripts/fonts/css to run our application. These files are usually generated at build time and result as output of build process (We not diving into build process but it’s really important to understand how your application is built. Most part of nowadays frameworks have built-in solutions to build your web app,e.g. angular ([angular-cli](https://cli.angular.io/), [create-react-app](https://github.com/facebook/create-react-app))
 
-## Cache and common issues
+### Cache and common issues
 
 Every time when you load a web app the browser downloads all the necessary files (including HTML, javascript, CSS, fonts, etc) to run the application. Let’s suppose that you have an application developed in angular. When you first access the website your browser will download everything and depending on the **cache headers returned in HTTP response** of each file, the browser will cache it, so the next time when you load the website browser will check if it has the file on cache then it won’t be necessary to load the file from server again.
 
@@ -83,7 +83,7 @@ If you access your browser inspector and go to Network Tabs you can find from wh
 
 We should be always aware of using cache. I strongly recommend having a read on this [article](https://www.mnot.net/cache_docs/) written by Mark Nottingham to understand how cache headers work under the hood.
 
-## Why cache can be tricky?
+### Why cache can be tricky
 
 Let's suppose that your website has a javascript file served with HTTP header telling browser to cache it for 7 days. Then in the next day, you find a bug and need to update it. If you simply change file and upload it to the server, users that have already accessed your website won't see any change as the file still cached and the browser won't even request the updated javascript file to your server again. We currently have a lot of approaches to solve this problem:
 
@@ -99,7 +99,7 @@ You might have some questions: How should I decide which files might be cached a
 * Every time when you deploy a new version/change to our website all the users should be able to get the updated content after a single page refresh.
 * For last, you should keep track of which files compound your web app and decide what is the best cache option for each. e.g: Whenever you add cache to all javascript files and they tend to change, make sure that filename will change after an update as described before.
 
-## Overview of AWS S3 & AWS CloudFront and Caching.
+### Overview of AWS S3 & AWS CloudFront and Caching
 
 Now we will do a quick overview of how S3 works with Cloudfront. Cloudfront is a [CDN (Content Delivery Network](https://en.wikipedia.org/wiki/Content_delivery_network), if you are not familiar please have a look at this article: [Cloudfare - what is a CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/).
 
@@ -107,7 +107,7 @@ Basically, Cloudfront CDN will serve your website content across different regio
 
 ![Cloudfront Edges](/media/cf-locations.png "Cloudfront Edges Location")
 
-## How CloudFront works and what is the relationship with S3?
+### How CloudFront works and what is the relationship with S3
 
 Let's now dive into the relationship between CloudFront and S3. Please have a look at the image below:
 
@@ -145,7 +145,7 @@ Please do not forget to read this article and understand how cache works in Clou
 
 Okay, let's finally get in action. I hope you guys not feeling overwhelmed.
 
-# Create S3 Bucket, make it public read access and enable static website hosting
+## Create S3 Bucket, make it public read access and enable static website hosting
 
 Using AWS Web Console, access S3 Service and create a new bucket. Then click on the bucket and access the permission tabs to make it public:
 Click in public access settings and make sure that all four options are set to false.
@@ -175,7 +175,7 @@ Now go under Properties and select **static website hosting** and set `index.htm
 
 All done! Now we moving forward to build our web app and generate static files.
 
-# Build Web App
+## Build Web App
 
 I am not gonna dive deep into this as we have a lot of options to generate website build assets, we have a lot to discuss and optimize the build process, reduce bundle size, lazy loading & code splitting, etc, but I am not gonna go through it now.
 
@@ -186,7 +186,7 @@ As I mentioned before the most part of these tools use webpack under the hood.
 
 The main thing that we should be concerned about what kind of files your website have and also which ones should be cached (most part of them, including javascript files, images, css, etc) and which ones we should avoid to caching (as index.html, serviceWorker.js). The most part of tools generate a new js/css filenames after a new deployment, so we don't need to worry about adding a new query string to the scripts to force browsers to download new content.
 
-# Install and configure AWS CLI
+## Install and configure AWS CLI
 
 The [AWS Command Line Interface - AWS CLI](https://aws.amazon.com/cli/) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.- _Definition from aws website._
 
@@ -282,7 +282,7 @@ You will be prompted to inform your access key and your secret key and the regio
 
 Now we ready to upload files to the bucket.
 
-# Upload files to the bucket using correct cache headers
+## Upload files to the bucket using correct cache headers
 
 I've mentioned before that we need to be aware of using cache headers and also understood that we need to deal with two kinds of cache:
 
@@ -316,7 +316,7 @@ aws s3 cp s3://YOUR_BUCKET_NAME s3://YOUR_BUCKET_NAME --recursive --include \"*.
 **Note:** We'll create an npm script in package.json file with will execute all of this commands automatically.
 Now all the files are already in the bucket. Now we will create our CloudFront distribution.
 
-# Create CloudFront distribution
+## Create CloudFront distribution
 
 ![cloudfront-create-distribution](/media/route53-create-cloudfront-distribution.png "Cloudfront Create Distribution")
 
@@ -349,7 +349,7 @@ Now your distribution is ready and in few minutes it will be accessible through 
 
 You can also find your distribution-id in cloudfront distribution list. You'll need it to send invalidation request.
 
-## Invalidation Request
+### Invalidation Request
 
 As mentioned before, every time after a new deployment we need to send an invalidation to purge the cloudfront cache. It will be done easily using the command:
 
@@ -357,7 +357,7 @@ As mentioned before, every time after a new deployment we need to send an invali
 aws cloudfront create-invalidation - distribution-id ${distributionId} - paths \"/*\"
 ```
 
-# CloudFront configuration: Custom SSL and attach custom domain to distribution
+## CloudFront configuration: Custom SSL and attach custom domain to distribution
 
 We need to do two more tasks:
 
@@ -392,7 +392,7 @@ If you choose to validate using your DNS Address, just add the CNAME entries in 
 
 >>**Note:**If you are using Route53 it allows you to automatically add the same entry in your hosted zone. I am not diving into how to use route53 , but get in touch if you have any question: )
 
-## Setting up an SSL Certificate and Custom Domain using ROUTE 53:
+### Setting up an SSL Certificate and Custom Domain using ROUTE 53:
 
 Now we need to create an entry in our domain to point for our CloudFront distribution. Essentially you have to create a CNAME entry in your domain pointing to CloudFront distribution, but I've faced some problems in adding a **CNAME in the root domain.**
 
@@ -412,7 +412,7 @@ After that, go back to your CloudFront distribution, clicks in 'Edit' and select
 
 Finally, everything should be ready and your website should be accessible 7 your custom domain and with secure SSL Certificate.
 
-# Review & Next Steps.
+## Review & Next Steps.
 
 So, now we have learned how to create and set up a single page application using AWS CloudFront.
 
