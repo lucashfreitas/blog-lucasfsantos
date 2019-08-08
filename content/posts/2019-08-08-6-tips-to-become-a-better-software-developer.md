@@ -2,7 +2,7 @@
 template: post
 title: 6 Tips to become a better Software Developer
 slug: 6-tips-to-become-a-better-developer
-draft: false
+draft: true
 date: 2019-08-08T09:07:10.944Z
 description: >-
   As a software developer, I know how busy we are and have a lot of ideas in
