@@ -2,26 +2,35 @@
 template: post
 title: 6 Tips to become a better Software Developer
 slug: 6-tips-to-become-a-better-developer
-draft: true
+draft: false
 date: 2019-08-08T09:07:10.944Z
 description: >-
-  As a software developer, I know how we are always busy and usually have a lot
-  of ideas in mind: learn and study new techs, fix bugs, contribute to open
-  source, start a business, etc.  Can you count the number of new tools which
-  came up just in last year from now on? t's indeed super exciting, but one of
-  the things which define successful people is how they use and plan their
-  habit. I often see a lot of successful people and ask my self what is the
-  secret, but I believe that is no secret, but if you take care of your self,
-  plan your self and work hard, it's definitely you paid on. I am writing this
-  article to give some tips that have been really useful and has helped me to
-  become a better software developer, IT Professional in general. 
+  As a software developer, I know how busy we are and have a lot of ideas in
+  mind: learn and study new techs, fix bugs, contribute to open source, start a
+  business, etc.  Can you count the number of new tools which came up since last
+  year? 
+
+
+  It's indeed super exciting, but one of the things which define successful
+  people is how they use and plan their habit. I often see a lot of successful
+  people and ask my self what is the secret, but I believe that is no secret,
+  but if you take care of your self, plan your self and work hard, it's
+  definitely you paid on. I am writing this article to give some tips that have
+  been really useful and has helped me to become a better software developer, IT
+  Professional in general. 
 category: 'software-development life-style codding '
 tags:
   - ''
 ---
+As a software developer, I know how we are always busy and usually have a lot of ideas in mind: learn and study new techs, fix bugs, contribute to open source, start a business, etc.  Can you count the number of new tools which came up just in last year from now on? t's indeed super exciting, but one of the things which define successful people is how they use and plan their habit. I often see a lot of successful people and ask my self what is the secret, but I believe that is no secret, but if you take care of your self, plan your self and work hard, it's definitely you paid on. I am writing this article to give some tips that have been really useful and has helped me to become a better software developer, IT Professional in general. 
+
 1. ## Take care of yourself
 
-I quite often see a lot of people in IT Field which is **always tired.**  As a software developer, I know how we are always busy and have a lot of ideas in mind: learn and study new techs, fix bugs, contribute to open source, start a business, etc. I know sometimes we stay up until late and wake up early in the morning, etc, but in the last months I have been asking my self: is nothing in this life more precious than your health, so if you have a goal in your professional career you need to take care about yourself, always remember: without it you are not going to develop your ideas, learn new ideas, etc. 
+![tired-of-coding](/media/shutterstock_57890992.jpg "tired-of-coding")
+
+I often see a lot of people in IT Field complaining about being **always tired.**  As a software developer I know sometimes we stay up until late and wake up early in the morning, etc, but in the last months I have been asking my self: is nothing in this life more precious than your health, so if you have a goal in your professional career you need to take care about yourself, always remember: without it you are not going to develop your ideas, learn new ideas, etc. 
+
+Sometimes in the past I had dreams with code and solution for some bugs, this was at same time exciting and terrible. 
 
 Is not easy to change habits, but the first step is look to ourselfs and see how can you improve your. If you are always tired something might be wrong, everyone talks it but is not hard to take small steps on improving your life quality as exercise, have enough sleep, eat healthy food. I used to eat a lot of junk food , soda everyday but as soon as my mindset changed I quit. A lot of friends of mine make joke about it, saying things like: "Oh, you don't drink coke, what if you die tomorrow?". I always respond: If you do everything thinking you gonna die tomorrow mate, honestly? 
 
@@ -51,7 +60,7 @@ Some tips to get updated about new tools:
 * **Stackoverflow:** Sometimes I search random questions order by date on (stackoverflow)\[https://stackoverflow.com/questions?tab=Newest] just to see what people are asking questions about, and whenever I found a new tool name I quick google it just do understand what it is.
 * **LinkedIn:** I often keep connected with some people which I have worked with and also sometimes I do some browsing in big IT companies and people to see in what they are working on, what technologies they are using. 
 
-3. ## Go deep into technologies that you use in daily basis 
+3. ## Go deep into technologies that you use in daily basis
 
 If you are working with any framework, try to go deep and understand how it works, what are the best practices and never do any line of code without knowing why you are doing on this way. I
 
@@ -86,10 +95,6 @@ d
 * Respond issues or contribute to open source projects in (github)\[https://github.com/]. 
 
 5 - Plan, organize and set goals. 
-
-
-
-
 
 6 - Be kind with everyone and yourself
 
