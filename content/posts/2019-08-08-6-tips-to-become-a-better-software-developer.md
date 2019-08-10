@@ -122,5 +122,4 @@ I got my self a whiteboard where I write all my goals/plans for every week and i
 
 
 
-
-Hopefully you have find this tips useful :)
+Hope you have find these tips useful :)
