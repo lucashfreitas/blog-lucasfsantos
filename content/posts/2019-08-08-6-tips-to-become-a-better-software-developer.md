@@ -90,7 +90,7 @@ Here are some and have been really useful for me so far:
 * **Read, read and read**. The internet has a lot of content. Do not hesitate do read official documentation, blog posts, books to understand better the tool that you are working on.
 * **Don't underestimate yourself:** Don't underestimate yourself. I used to underestimate myself quite often having thoughts like: Why should I write about this if has a lot of people who know so much more than me? Don't get hard comparing yourself to another developer and thinking you worth less because you don't work in big IT companies or know much like them. Use this as motivation to learn more and always remember, no one was born knowing everything and everyone has something to learn&teach.
 
-## 4 - Share your knowledge
+4. ## Share your knowledge
 
 One of my favorites! As I software developer, I love to feel useful and I believe that has no better way to feel like this than helping someone else. It really worth it when you share some knowledge and find out that this helped someone :). 
 
@@ -105,7 +105,7 @@ Some tips:
 * Answers questions on [stackoverflow](https://stackoverflow.com).
 * Contribute to open-source projects in [github](https://github.com). 
 
-## **5 - Plan, organize and set goals.**
+5. ## Plan, organize and set goals.##
 
 Without planning and focus is really hard to achieve your goals. Some time ago I found my self lost in a bunch of different ideas, things to study and learn, it was really hard to really finish/accomplish something. As a result, I bought more than 10 courses and finish only two of them.
 
