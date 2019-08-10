@@ -23,9 +23,9 @@ description: >-
   and work hard, I believe we have a better chance. I wrote this article to
   share some important things which are continuously helping me to become a
   better software developer. Hope you'll find it useful.
-category: software-development
+category: software development
 tags:
-  - software-development
+  - software development
 ---
 As a software developer, I know how busy we are and how many different ideas we got in our minds: learn and study new techs, fix bugs, contribute to open source, start a business, etc.  
 
