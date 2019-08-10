@@ -2,8 +2,8 @@
 template: post
 title: 5 Things that helped me to become a better Software Developer
 slug: 5-tips-to-become-a-better-developer
-draft: true
-date: 2019-08-08T09:07:10.944Z
+draft: false
+date: 2019-08-09T09:07:10.944Z
 description: >-
   As a software developer, I know how busy we are and how many different ideas
   we got in our minds: learn and study new techs, fix bugs, contribute to open
