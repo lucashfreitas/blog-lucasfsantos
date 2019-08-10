@@ -40,8 +40,10 @@ I do not believe in a magic secret to become a successful software developer, ho
 
 I often see people complaining about being **always tired.**  As a software developer I know sometimes we want to do a lot of things, study and learn, then we stay up until late and wake up early in the morning, etc.I already had dreams with code and solution for some bugs, it was at same time exciting and scary. 
 
-I have defined a rule for myself: **one of the most precious things in my life is my health** and without it I will not accomplish my goals, build my ideas, learn new things, etc.
-Is not easy to change habits, but the first step is look to yourself and identify if you need to change something to improve your life quality. If you are one of those persons _who is tired of being tired_, why not have a look at what might be causing this? It's not easy, you can start with small steps to improve your life quality as exercise, have enough sleep, eat healthy food, etc. There is a lot of available content, books, etc that can help you with this task. 
+I have defined a rule for myself: **one of the most precious things in my life is my health** and without it I will not accomplish my goals, build my ideas, learn new things, etc. It's not easy to change habits, but the first step is look to yourself and identify if you need to change something to improve your life quality.
+
+If you are one of those persons _who is tired of being tired_, why not have a look at what might be causing this? It's not easy, you can start with small steps to improve your life quality as exercise, have enough sleep, eat healthy food, etc. There is a lot of available content, books, etc that can help you with this task. 
+
 Time flies, so take care of your self now and remember that health is one of the most important things that you have in your life, so don't waste it. 
 
 2. ## Keep yourself updated
@@ -57,7 +59,7 @@ I have worked with different technologies in the last years and the learning pro
 
 Some tips to get updated:
 
-* **Be curious:** Whenever I listen or watch someone talking about software development, one of the first things I do if I don't know what they talking about is search about it. Curiosity really helps me a lot to keep connected with a lot of new things. When I access some websites, one of my first thinkings is: what tools/frameworks were used to build it?
+* **Be curious:** Whenever I listen or watch someone talking about software development, one of the first things I do if I don't know what   are they talking about is search about it. Curiosity really helps me a lot to keep connected with a lot of new things. When I access some websites, one of my first thinkings is: what tools/frameworks were used to build it?
 * **Twitter:** Twitter is one of my favorites, it has a lot of awesome professionals which is daily sharing a lot of useful content and news about software development. If you are keen to keep updated about any subject, just create a twitter and search for people and companies of your interest. I can't spend one day without scrolling my twitter timeline. Does not matter if you are keen on Javascript, React, NodeJs, Python, Machine Learning, DevOps, Database, etc, you will certainly find good content for it.
 * **Talks:** I love to watch talks, especially talks that big companies do explaining how they build their infrastructure and how they are solving their problems. In each video, I usually learn a lot of new tools and technologies and immediately google and read more about them. 
 * **Read/Blogs:** We have a lot of plataforms as [dev.to](https://dev.to/), [medium](https://medium.com) and more which has a lot of content about software development. In the most part of them, you can set yourself notifications to receive emails when new content is released.
@@ -81,8 +83,7 @@ Here are some and have been really useful for me so far:
   * Angular [Angular In Depth](https://twitter.com/AngularInDepth) 
   * Javascript - Testing: [Kent C. Dodds](https://twitter.com/kentcdodds)
 
-
-     ... And much more!
+... And much more!
 
 * **Browse the source code**  or try to run it locally (I know it might be hard to understand all the source code from an entire framework, but you can start trying to understand how each chunk works). When you get a bug showing a log message, you can try to inspect the source code and see where this message is coming from and why. I was developing an application using angular a few months ago and always had the source code open, whenever I got an error message I used to inspect the source code and understand why I got the message. It really helped me to understand how the framework works by itself.
 * **Find meetups/conferences** If you can't go you can either watch it later or see what topics were discussed on. You can use [meetup](https://www.meetup.com) app to search for groups of interest on your location.
@@ -112,7 +113,7 @@ Time is one of our most precious things and sometimes it's a challenge to use it
 
 As soon as I started to plan every week with my goals and what I would study/develop everything changed. 
 
-I bought my self a whiteboard where I write all my goals/plans for every week and it's have helped me a lot. Every time when I am sitting on my desk and can just look on my right and quickly remember all my goals for this week, which helps me to keep focused. 
+I got my self a whiteboard where I write all my goals/plans for every week and it's have helped me a lot. Every time when I am sitting on my desk and can just look on my right and quickly remember all my goals for this week, which helps me to keep focused. 
 
 * **Set Goals:** What you want to learn? What will you build? What you want to be good at? 
 * **Define actions**: What I need to do to achieve my goals? If you want to learn a specific technology you can define as an action build an application using it or do an online course.
