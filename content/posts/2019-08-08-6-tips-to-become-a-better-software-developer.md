@@ -25,7 +25,7 @@ description: >-
   better software developer. Hope you'll find it useful.
 category: software-development
 tags:
-  - ''
+  - software-development
 ---
 As a software developer, I know how busy we are and how many different ideas we got in our minds: learn and study new techs, fix bugs, contribute to open source, start a business, etc.  
 
