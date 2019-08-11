@@ -90,7 +90,7 @@ Here are some and have been really useful for me so far:
  * **Browse the source code**  or try to run it locally (I know it might be hard to understand all the source code from an entire framework, but you can start trying to understand how each chunk works). When you get a bug showing a log message, you can try to inspect the source code and see where this message is coming from and why. I was developing an application using angular a few months ago and always had the source code open, whenever I got an error message I used to inspect the source code and understand why I got the message. It really helped me to understand how the framework works by itself.
  * **Find meetups/conferences** If you can't go you can either watch it later or see what topics were discussed on. You can use [meetup](https://www.meetup.com) app to search for groups of interest on your location.
  * **Read, read and read**. The internet has a lot of content. Do not hesitate do read official documentation, blog posts, books to understand better the tool that you are working on.
- * **Don't underestimate yourself:** Don't underestimate yourself. I used to underestimate myself quite often having thoughts like: Why should I write about this if has a lot of people who know so much more than me? Don't get hard comparing yourself to another developer and thinking you worth less because you don't work in big IT companies or know much like them. Use this as motivation to learn more and always remember, no one was born knowing everything and everyone has something to learn&teach.
+ * **Don't underestimate yourself:** Don't underestimate yourself. I used to underestimate myself quite often having thoughts like: Why should I write about this if has a lot of people who know much more than me? Don't get hard comparing yourself to another developer and thinking you worth less because you don't work in big IT companies or know much like them. Use this as motivation to learn more and always remember, no one was born knowing everything and everyone has something to learn&teach.
 
 
 4. ## Share your knowledge
@@ -119,8 +119,8 @@ As soon as I started to plan every week with my goals and what I would study/dev
 
 I got my self a whiteboard where I write all my goals/plans for every week and it's have helped me a lot. Every time when I am sitting on my desk and can just look on my right and quickly remember all my goals for this week, which helps me to keep focused. 
 
- * **Set Goals:** What you want to learn? What will you build? What you want to be good at? 
- * **Define actions**: What I need to do to achieve my goals? If you want to learn a specific technology you can define as an action build an application using it or do an online course.
+ * **Set Goals:** What do you wanna learn? What will you build? What you want to be good at? 
+ * **Define actions**: What I need to do to achieve my goals? If you want learn a specific technology you can define as an action build an application using it or do an online course.
  * **Organize your time**: The hardest part. Everyone is busy, so organize your timetable and save yourself some time to execute your actions.
  * **Focus**: We have a lot of different languages, technologies, etc. If you want to learn and be good at something, try to focus on one by one. As I mentioned before, some time ago I bought myself 10 courses and I finish just 2 of them. Chose something and go ahead.
 
