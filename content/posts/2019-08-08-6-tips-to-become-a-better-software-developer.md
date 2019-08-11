@@ -63,10 +63,11 @@ Some tips to get updated:
  * **Be curious:** Whenever I listen or watch someone talking about software development, one of the first things I do if I don't know what   are they talking about is search about it. Curiosity really helps me a lot to keep connected with a lot of new things. When I access some websites, one of my first thinkings is: what tools/frameworks were used to build it?
  * **Twitter:** Twitter is one of my favorites, it has a lot of awesome professionals which is daily sharing a lot of useful content and news about software development. If you are keen to keep updated about any subject, just create a twitter and search for people and companies of your interest. I can't spend one day without scrolling my twitter timeline. Does not matter if you are keen on Javascript, React, NodeJs, Python, Machine Learning, DevOps, Database, etc, you will certainly find good content for it.
  * **Talks:** I love to watch talks, especially talks that big companies do explaining how they build their infrastructure and how they are solving their problems. In each video, I usually learn a lot of new tools and technologies and immediately google and read more about them.
- * **Read/Blogs:** We have a lot of plataforms as [dev.to](https://dev.to/), [medium](https://medium.com) and more which has a lot of content about software development. In the most part of them, you can set yourself notifications to receive emails when new content is released.
+ * **Read/Blogs:** We have a lot of plataforms as [dev.to](https://dev.to/), [medium](https://medium.com) and much more with a lot of content about software development. In the most part of them, you can set yourself notifications to receive emails when new content is released.
  * **Github:** Github has an [explore function](https://github.com/explore) which contains trending repositories and much more. I also follow a lot of awesome software developers and IT companies to see what they are up to.
  * **Stackoverflow:** Sometimes I search random new questions on [stackoverflow](https://stackoverflow.com/questions?tab=Newest) just to see what people are asking questions about.
  * **LinkedIn:** I keep connected with IT Professionals, IT Companies, co workers and sometimes I use this to see in what they are working on, what technologies they are using,etc.
+
 
 3. ## Improve and challenge yourself
 
