@@ -26,6 +26,7 @@ description: >-
 category: software development
 tags:
   - software development
+  - career
 ---
 As a software developer, I know how busy we are and how many different ideas we got in our minds: learn and study new techs, fix bugs, contribute to open source, start a business, etc.  
 
@@ -59,13 +60,13 @@ I have worked with different technologies in the last years and the learning pro
 
 Some tips to get updated:
 
- * **Be curious:** Whenever I listen or watch someone talking about software development, one of the first things I do if I don't know what   are they talking about is search about it. Curiosity really helps me a lot to keep connected with a lot of new things. When I access some websites, one of my first thinkings is: what tools/frameworks were used to build it?
- * **Twitter:** Twitter is one of my favorites, it has a lot of awesome professionals which is daily sharing a lot of useful content and news about software development. If you are keen to keep updated about any subject, just create a twitter and search for people and companies of your interest. I can't spend one day without scrolling my twitter timeline. Does not matter if you are keen on Javascript, React, NodeJs, Python, Machine Learning, DevOps, Database, etc, you will certainly find good content for it.
- * **Talks:** I love to watch talks, especially talks that big companies do explaining how they build their infrastructure and how they are solving their problems. In each video, I usually learn a lot of new tools and technologies and immediately google and read more about them. 
- * **Read/Blogs:** We have a lot of plataforms as [dev.to](https://dev.to/), [medium](https://medium.com) and more which has a lot of content about software development. In the most part of them, you can set yourself notifications to receive emails when new content is released.
- * **Github:** Github has an [explore function](https://github.com/explore) which contains trending repositories and much more. I also follow a lot of awesome software developers and IT companies to see what they are up to.
- * **Stackoverflow:** Sometimes I search random new questions on [stackoverflow](https://stackoverflow.com/questions?tab=Newest) just to see what people are asking questions about.
- * **LinkedIn:** I keep connected with IT Professionals, IT Companies, co workers and sometimes I use this to see in what they are working on, what technologies they are using,etc.
+* **Be curious:** Whenever I listen or watch someone talking about software development, one of the first things I do if I don't know what   are they talking about is search about it. Curiosity really helps me a lot to keep connected with a lot of new things. When I access some websites, one of my first thinkings is: what tools/frameworks were used to build it?
+* **Twitter:** Twitter is one of my favorites, it has a lot of awesome professionals which is daily sharing a lot of useful content and news about software development. If you are keen to keep updated about any subject, just create a twitter and search for people and companies of your interest. I can't spend one day without scrolling my twitter timeline. Does not matter if you are keen on Javascript, React, NodeJs, Python, Machine Learning, DevOps, Database, etc, you will certainly find good content for it.
+* **Talks:** I love to watch talks, especially talks that big companies do explaining how they build their infrastructure and how they are solving their problems. In each video, I usually learn a lot of new tools and technologies and immediately google and read more about them.
+* **Read/Blogs:** We have a lot of plataforms as [dev.to](https://dev.to/), [medium](https://medium.com) and more which has a lot of content about software development. In the most part of them, you can set yourself notifications to receive emails when new content is released.
+* **Github:** Github has an [explore function](https://github.com/explore) which contains trending repositories and much more. I also follow a lot of awesome software developers and IT companies to see what they are up to.
+* **Stackoverflow:** Sometimes I search random new questions on [stackoverflow](https://stackoverflow.com/questions?tab=Newest) just to see what people are asking questions about.
+* **LinkedIn:** I keep connected with IT Professionals, IT Companies, co workers and sometimes I use this to see in what they are working on, what technologies they are using,etc.
 
 3.## Improve and challenge yourself
 
@@ -90,6 +91,7 @@ Here are some and have been really useful for me so far:
 * **Read, read and read**. The internet has a lot of content. Do not hesitate do read official documentation, blog posts, books to understand better the tool that you are working on.
 * **Don't underestimate yourself:** Don't underestimate yourself. I used to underestimate myself quite often having thoughts like: Why should I write about this if has a lot of people who know so much more than me? Don't get hard comparing yourself to another developer and thinking you worth less because you don't work in big IT companies or know much like them. Use this as motivation to learn more and always remember, no one was born knowing everything and everyone has something to learn&teach.
 
+
 4.## Share your knowledge
 
 One of my favorites! As I software developer, I love to feel useful and I believe that has no better way to feel like this than helping someone else. It really worth it when you share some knowledge and find out that this helped someone :).
@@ -104,6 +106,7 @@ Some tips:
 * If possible, get into your IT community, you can use apps like [meetup](https://www.meetup.com) for that.
 * Answers questions on [stackoverflow](https://stackoverflow.com).
 * Contribute to open-source projects in [github](https://github.com). 
+
 
 5.##Plan, organize and set goals.
 
