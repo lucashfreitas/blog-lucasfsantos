@@ -124,4 +124,4 @@ I got my self a whiteboard where I write all my goals/plans for every week and i
  * **Organize your time**: The hardest part. Everyone is busy, so organize your timetable and save yourself some time to execute your actions.
  * **Focus**: We have a lot of different languages, technologies, etc. If you want to learn and be good at something, try to focus on one by one. As I mentioned before, some time ago I bought myself 10 courses and I finish just 2 of them. Chose something and go ahead.
 
-Hope you have find these tips useful :)
+Hope you found these tips useful :)
