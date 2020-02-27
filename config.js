@@ -5,7 +5,7 @@ module.exports = {
   title: 'Blog by Lucas Santos',
   subtitle: 'Lucas Santos Full Stack Software Developer',
   copyright: 'Lucas Santos © All rights reserved.',
-  disqusShortname: '',
+  disqusShortname: 'https-lucasfsantos-com',
   postsPerPage: 5,
   googleAnalyticsId: 'UA-141668818-1',
   menu: [
