@@ -3,7 +3,7 @@ template: post
 title: >-
   How to build multiple Gatsby websites/sass applications using shared themes .
   A quick overview of gatsby theme and monorepository.
-slug: gatsby-react-shared-themes-monorepository
+slug: gatsby-react-shared-theme-monorepository
 draft: false
 date: 2020-03-10T09:00:09.587Z
 description: >-
