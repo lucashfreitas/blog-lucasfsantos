@@ -21,7 +21,7 @@ description: >-
   componentes, services, graphQL queries, pages, everything!
 
 
-  It's easy, simple to maintain & deplo!
+  It's easy, simple to maintain & deploy.
 category: react gatsby web-development javascript
 tags:
   - gatsby react javascript web-development
