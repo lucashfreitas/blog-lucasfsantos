@@ -26,4 +26,4 @@ category: react gatsby web-development javascript
 tags:
   - gatsby react javascript web-development
 ---
-* ![]()
+* ![gatsby-shared-theme-monorepository](/media/gatsby-shared-theme.png "Gatsby Shared Theme Architecture")
