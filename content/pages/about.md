@@ -10,7 +10,7 @@ I am an energic software developer from Brazil based in New Zealand. I moved to 
 
 I have experience as a Software Developer working with different stacks and programming languages following agile methods for 6 years. I am quick to understand business requirements, learn new technologies and deliver practical solutions. Besides technical skills, I am friendly, communicative and work well within a team.
 
-In the most part of job positions I was involved directly in all SDLC, from the business requirements to the deployment. I consider my self a self-taught developer as I am always updated with latest technologies/tools ([here is how I do it](https://lucasfsantos.com/5-tips-to-become-a-better-developer)). I had to learn and implement new tools in the most part of roles that I have been working.
+In the most part of job positions I was involved directly in all SDLC, from the business requirements to the deployment. I consider my self a self-taught developer as I am always updated with latest technologies/tools ([here is how I do it](https://lucasfsantos.com/5-tips-to-become-a-better-developer)). I had to learn and implement new tools in the most part of roles that I have been working on.
 
 For the last two years I have been working mainly with:  
 
