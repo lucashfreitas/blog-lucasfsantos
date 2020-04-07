@@ -30,30 +30,11 @@ I will not go through technical architectural steps but instead I will try to gi
 
 The **Business Logic/Domain** layer is responsible to implement all the BUSINESS NEEDS, it's the core part of your system and it's directly related to the business rules. Let's suppose that you need to add a new customer in your database, the service layer will be responsible to receive all the parameters from the api (AKA (Dto's)\[https://stackoverflow.com/questions/36174516/rest-api-dtos-or-not].
 
-The most valuable part of any enterprise system is usually the business rules and the requirements.
+The most valuable part of any enterprise system is usually the business rules and the requirements. This layer is directly related to our database, even though if we have the database operations in a different layer using repository patterns. 
 
-This layer is directly related to our database, even though if we add another layer for the database (e.g repository pattern)
+The HTTP Layer will be a way to EXPOSE or ALLOW a third part system (a front end application written in react for example) to do transactions, execute tasks and change data in on your system.
 
-This layer will be directly "plugued" with the HTTP Layer. 
-
-The HTTP Layer will be a way to EXPOSE or ALLOW a third part system (a front end application written in react for example)
-
-The HTTP/Controllers lands is responsable to CONNECT and DELIVER your services/resource for someone to use (e.g a single page application written in react,angular,etc).
-
-
-
-If you have these two questions: 
-
-\- Someone 
-
-
-
-
-
-If you think in the business that you work on, what is more important? The action that is executed by your service or 
-
-
-
+If you are using BDD it will be directly related to this layer as it will describe all the use cases and validate/test your business rules.
 
 
 ## HTTP/Web/Controllers application Layer
@@ -69,8 +50,8 @@ The main mistake that I have seem in this layer is the use of all the business l
 
 Usually what is the common flow that we follow in each controller method: 
 
-1 - Check Authentication (if request is not authenticated returns \
-2 - Validate Request (If request is not valid returns Bad response)\
+1 - Check Authentication (if request is not authenticated returns 
+2 - Validate Request (If request is not valid returns Bad response)
 3 - 
 
 What is the most important in your web api is the business logic, so if you abstract your business logic it will be a way more clear.
