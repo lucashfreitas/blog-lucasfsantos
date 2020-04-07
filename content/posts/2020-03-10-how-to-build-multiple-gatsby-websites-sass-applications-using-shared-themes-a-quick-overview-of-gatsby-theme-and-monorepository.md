@@ -28,7 +28,7 @@ tags:
 ---
 ![gatsby-theme](/media/gatsby-theme-right.png "Gatsby Theme Architecture")
 
-Let's imagine that you have a SaaS product with same base layout/components and backend structure among all clients, but each customer will have  different colors, images, logos, styling and of course, data sources.
+Let's imagine that you have a SaaS product with same base layout/components and backend structure for all clients, but each customer will have  different colors, images, logos, styling and of course, data sources.
 
 In this case, instead of setting up many different web applications, you can have a base application (we will use gatsby theme) which will have all common components, api calls, business logic but with different data sources (different api sources, different contentful spaces and different styling (colors, typography, etc).
 
