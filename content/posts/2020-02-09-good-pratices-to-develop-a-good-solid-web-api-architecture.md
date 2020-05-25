@@ -1,7 +1,7 @@
 ---
 template: post
-title: 'WEB API Development for Beginners '
-slug: good-pratices-to-develop-web-api
+title: 'WEB APIs: Important Concepts for beginners'
+slug: web-api
 draft: true
 date: 2020-02-09T07:41:37.896Z
 description: test
@@ -9,13 +9,15 @@ category: web-api
 ---
 It has been a while since I did the last post, I was really busy over last months, but let's get's on a really important topic and I have seen many mistakes over the last years is about building a solid  **architecture.** 
 
-You will get better understanding if you are already familiar with Web-api, if not no worries, here you go some good explanations: 
+You will get better understanding if you are already familiar with Web APIs, if not no worries, here you go some good explanations: 
 
 * [MuletSoft-What is a web api](https://www.youtube.com/watch?v=s7wmiS2mSXY)
 * [HackerNoon - What are web apis](https://hackernoon.com/what-are-web-apis-c74053fa4072)
 
-I have been working for Web Api's in the last years and I **have**  seem projects lacking of a well defined architecture which results in more bugs, more time to develop new features. I will **not cover** all the differences between different architectures, if we are using micro services, we can use a completely different approach/architecture, for example. \
-\
+I have been working for Web Api's in the last years and I **have**  seem projects lacking of a well defined architecture which results in more bugs, more time to develop new features. I will **not cover** all the differences between all possible architectures, we have many interesting topics to discuss as DDD & CQRS & Event Sourcing, micro services and event driven,  we can use different , but the main concept still the same.
+
+On this article I will focus mainly in HTTP Layer/Controllers vs Business Roles (Services, Domains).
+
 So this tip will be most related with tradicional **`WEB API MVC`**` ``FRAMEWORKS. `
 
 Does not matter if you are developing it using an Object Oriented Language (C#,Java) or Javascript for example, the concept is pretty much applicable to all MVC Framewors,\
