@@ -1,18 +1,22 @@
 ---
 template: post
-title: Deploying Single Page Applications to AWS Cloudfront
+title: Deploying React and Angular Single Page Applications to AWS Cloudfront
 slug: /posts/deploy-react-angular-cloudfront/
 draft: false
 date: '2019-04-09'
-description: It's not new that many web application nowadays is SPA (Single Page Application) and it tends to grow a lot. In this article, I will show how it's easy, simple and cheap to deploy your web app in a few minutes using AWS S3 & CloudFront.
+description: >-
+  It's not new that many web application nowadays is SPA (Single Page
+  Application) and it tends to grow a lot. In this article, I will show how it's
+  easy, simple and cheap to deploy your web app in a few minutes using AWS S3 &
+  CloudFront.
 category: Web Development
 tags:
-  - 'React'
-  - 'Angular'
-  - 'Vue'
-  - 'Web Development'
-  - 'AWS'
-  - 'Cloudfront'
+  - React
+  - Angular
+  - Vue
+  - Web Development
+  - AWS
+  - Cloudfront
 ---
 
 It's not new that many web application nowadays is SPA (Single Page Application) and it tends to grow a lot.
