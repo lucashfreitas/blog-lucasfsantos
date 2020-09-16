@@ -10,7 +10,9 @@ description: >-
   Domains). So this tip will be most related to traditional Web MVC frameworks.
   Does not matter if you are developing it using  Ruby, C#, Java, or Javascript,
   for example, the concept can be applied to different languages and frameworks.
-category: 'web-api solid mvc http '
+category: web-api
+tags:
+  - web-api solid http mvc
 ---
 It has been a while since I did the last post, I was really busy over the last months, but let's gets on a really important topic when deciding on how to build your web API.
 
