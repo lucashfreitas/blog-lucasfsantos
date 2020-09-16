@@ -23,15 +23,15 @@ You will get a better understanding if you are already familiar with Web APIs, h
 
 I have been working for Web Api's for the last years and I **have** seemed projects lacking a well-defined architecture which results in more bugs, more time to develop new features, and more time for new developers to understand the code.
 
-I will **not cover** all the differences between all possible architectures/frameworks & cases because I don't believe there is a "magic" architecture that would fit for all cases, I believe instead that a good architectural decision should be based on each project needs/timeline and the team skills. I like to think about how it will improve team productivity and make the code less buggy and easy to maintain. 
+I will **not cover** all the differences between all possible architectures/frameworks & cases as I don't believe there is a "magic" architecture that would fit for all cases, I believe instead that a good architectural decision should be based on each project needs/timeline and the team skills. I like to think about how it will improve team productivity and make the code less buggy and easy to maintain. 
 
 One of the questions I ask my self when starting to develop a new project is: 
 
 > If I need to fix some bug & implement some changes, how easy/guessable is to identify where exactly I need to go to fix this bug? Which folder, which file, which method, which line of code?
 
-As developers, we know that it saves a lot of time when we starting to work in a new project and it's clear the way the folder structures & code is organized and makes our life really easier to fix bugs and add new features.
+As developers, we know how good is to work in a project with a clear architecture, where the folder structures and the code are organized in a intuitive and easy way! It saves time and money!
 
-Even though What I will say across this articles might not make sense for all cases and you might see production systems using a different approach, by the way, we have many interesting topics and architectures to discuss as for example DDD, CQRS & Event Sourcing, but hopefully, I will talk about them in a separated blog post.
+What I mean with this post might not make sense for all cases and you might see production systems using a different approach, by the way, we have many interesting topics and architectures to discuss as for example DDD, CQRS & Event Sourcing, but hopefully, I will talk about them in a separated blog post.
 
 In this short post, I will focus mainly on giving an idea/mindset of view/separate the HTTP Layer/Controllers vs Business Roles (Services, Domains). So this tip will be most related to traditional **`WEB API MVC**FRAMEWORKS.` Does not matter if you are developing it using  Ruby, C#, Java, or Javascript, for example, the concept can be applied to different languages and frameworks.
 
@@ -46,7 +46,7 @@ The **Business Logic/Domain** li is responsible to implement all the BUSINESS NE
 
 The most valuable part of any **enterprise** system is usually this layer as it is directly related to your user's needs This layer is directly related to our database, even though if we have the database operations in a different layer using repository patterns.
 
-This layer usually contains pieces of code called as `Services` that executes important task to implement the Business Roles/Needs, for example as add a User:
+This layer usually contains pieces of code called `Services` that executes important task to implement the Business Roles/Needs, for example as add a User:
 
 ```jsx
 service USER_SERVICE {
@@ -107,9 +107,9 @@ Sometimes I have seen all business logic implementation happening in this layer,
 Many production systems use this approach and I don't want to create a bias that it's terrible, but alongside my developer experience it difficult a lot understand/testing and maintaining features. I Have  listed some reasons for that:
 
 1. **Hard to understand and maintain**: Let's suppose that:  I found a bug on my reactjs application on the API request to add a user ⇒ let's see what's going on the backend? ⇒ the post request to add User implementation has over 500 lines on the controller, a lot of if and else, etc 😱
-2. Most part of the bugs sits on business layer/logic of your application
+2. Most part of the bugs sits on the business layer/logic of your application
 3. Impossible to reutilize the code in two different controllers: Let's suppose that the User Service has a method `getUser` and needed to be used in two different controllers
-4. Hard to test: If you are using TDD, is hard to test controllers as it have many duties. 
+4. Hard to test: If you are using TDD, is hard to test controllers as it has many duties. 
 
 Let's imagine that you want to develop an API to allow a frontend or a mobile application to add new CARS to the database and you want to display it in a frontend or mobile application. You will probably map a new route something like `/cars` to a controller method handler, for example:
 
@@ -146,9 +146,9 @@ USER_CONTROLLER extends BASE_CONTROLLER {
 
 This is just a pseudo code to pass the idea how the controller usually much cleaner focusing only in handle request/response, but you might be wondering how the service class is available to the controller just by passing it inside a constructor: this is done using `dependency injection`, which is another important topic to understand if you want to build a clean architecture.
 
-There is other many techniques and libraries like that we can help us to perform common tasks as validation, caching, authentication/authorization, mapping entities to JSON responses, etc.
+There are other many techniques and libraries like that we can help us to perform common tasks as validation, caching, authentication/authorization, mapping entities to JSON responses, etc.
 
-I've developed a quick demo that show an example of how having the controllers layer separately from your domain layer:
+I've developed a quick demo that shows an example of how having the controllers layer separately from your domain layer:
 
 [https://github.com/lucashfreitas/serverless-clean-api-domain-example](https://github.com/lucashfreitas/serverless-clean-api-domain-example/tree/master/src)
 
@@ -162,7 +162,7 @@ The main idea of this post is to share a mindset of seeing the HTTP Layer and th
 
 As I said before, there is no single truth in the software development world, you should understand and observe all the concepts and decide how to apply it in your context, so this situation of having controllers with hundreds of lines of code implementing all the business roles maybe not a problem for you and we have production systems using this, but I want to warn of the downsides of having it on the long term.
 
-I do have a lot more subjects I want to cover in a other blog posts as: 
+I do have a lot more subjects I want to cover in other blog posts as: 
 
 - **HTTP Protocol:** Is really important to understand this before jumping to web API implementation. What status code should you use?
 - **REST Principle:** How to semantically structure your routes, http methods and status code?
