@@ -2,7 +2,7 @@
 template: post
 title: 'WEB APIs: Important Concepts for beginners: Domain x HTTP Layer'
 slug: web-api-domain-vs-http-layer
-draft: true
+draft: false
 date: 2020-09-17T08:41:37.896Z
 description: >-
   In this short post, I will focus mainly on giving an idea/mindset of
