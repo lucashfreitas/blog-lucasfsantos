@@ -16,7 +16,7 @@ tags:
 ---
 It has been a while since I did the last post, I was really busy over the last months, but let's gets on a really important topic when deciding on how to build your web API.
 
-You will get a better understanding if you are already familiar with Web APIs, here you go some good explanations:
+You will get a better understanding if you are already familiar with Web APIs, otherwise here you go some good explanations:
 
 - [MuletSoft-What is a web api](https://www.youtube.com/watch?v=s7wmiS2mSXY)
 - [HackerNoon - What are web apis](https://hackernoon.com/what-are-web-apis-c74053fa4072)
@@ -33,15 +33,15 @@ As developers, we know how good is to work in a project with a clear architectur
 
 What I mean with this post might not make sense for all cases and you might see production systems using a different approach, by the way, we have many interesting topics and architectures to discuss as for example DDD, CQRS & Event Sourcing, but hopefully, I will talk about them in a separated blog post.
 
-In this short post, I will focus mainly on giving an idea/mindset of view/separate the HTTP Layer/Controllers vs Business Roles (Services, Domains). So this tip will be most related to traditional **`WEB API MVC**FRAMEWORKS.` Does not matter if you are developing it using  Ruby, C#, Java, or Javascript, for example, the concept can be applied to different languages and frameworks.
+In this short post, I will focus mainly on giving an idea/mindset of view/separate the HTTP Layer/Controllers vs Business Roles (Services, Domains). So this tip will be most related to traditional MVC Frameworks. Does not matter if you are using  Ruby, C#, Java, or Javascript, for example, the concept can be applied to different languages and frameworks.
 
-Lately, one of the biggest problems that I have seen when maintaining web APIs is to find `Controllers` with a huge amount of code, I've found controllers with over 500 lines of code for each method. 
+One of the biggest problems that I have seen when maintaining web APIs is to find `Controllers` with a huge amount of code. I've found controllers with over 500 lines of code for each method. 
 
 I will not go through technical architectural steps but instead, I will try to share my a different view about the separation of concerns between the **HTTP LAYER/CONTROLLERS layer** vs **BUSINESS LOGIC/DOMAIN LAYER.**
 
 ## The Business Logic/Domain Layer
 
-The **Business Logic/Domain** li is responsible to implement all the BUSINESS NEEDS, it's the core part of your system and it's directly related to the business rules. This layer will implement all your client needs, let's suppose the person who hired you to build a system wants to add a new customer in the database, this layer will be responsible to receive the `input` from the front end application, do validations and insert the data on the database and return a result telling if the action was successful or not.
+The **Business Logic/Domain** layer is responsible to implement all the BUSINESS NEEDS, it's the core part of your system and it's directly related to the business rules. This layer will implement all your client needs, let's suppose the person who hired you to build a system wants to add a new customer in the database, this layer will be responsible to receive the `input` from the front end application, do validations and insert the data on the database and return a result telling if the action was successful or not.
  
 
 The most valuable part of any **enterprise** system is usually this layer as it is directly related to your user's needs This layer is directly related to our database, even though if we have the database operations in a different layer using repository patterns.
@@ -144,7 +144,7 @@ USER_CONTROLLER extends BASE_CONTROLLER {
 }
 ```
 
-This is just a pseudo code to pass the idea how the controller usually much cleaner focusing only in handle request/response, but you might be wondering how the service class is available to the controller just by passing it inside a constructor: this is done using `dependency injection`, which is another important topic to understand if you want to build a clean architecture.
+This is just a pseudo code to explain how the controller usually much cleaner focusing only in handle request/response, but you might be wondering how the service class is available to the controller just by passing it inside a constructor: this is done using `dependency injection`, which is another important topic to understand if you want to build a clean architecture.
 
 There are other many techniques and libraries like that we can help us to perform common tasks as validation, caching, authentication/authorization, mapping entities to JSON responses, etc.
 
