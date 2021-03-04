@@ -1,6 +1,6 @@
 ---
 template: post
-title: 5 Things that helped me to become a better Software Developer
+title: 5 Things that help me to become a better Software Developer
 slug: 5-tips-to-become-a-better-developer
 draft: false
 date: 2019-08-09T09:07:10.944Z
