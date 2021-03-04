@@ -1,15 +1,15 @@
 ---
 template: post
-title: 'WEB APIs: Important Concepts for beginners: Domain x HTTP Layer'
-slug: web-api-domain-vs-http-layer
+title: 'WEB APIs: Important Concepts for beginners: Business Logic x HTTP Layer'
+slug: web-api-business-logic-vs-http-layer
 draft: false
 date: 2020-09-17T08:41:37.896Z
 description: >-
   In this short post, I will focus mainly on giving an idea/mindset of
-  view/separate the HTTP Layer/Controllers vs Business Roles (Services,
-  Domains). So this tip will be most related to traditional Web MVC frameworks.
-  Does not matter if you are developing it using  Ruby, C#, Java, or Javascript,
-  for example, the concept can be applied to different languages and frameworks.
+  view/separate the HTTP Layer/Controllers vs Business Roles. So this tip will
+  be most related to traditional Web MVC frameworks. Does not matter if you are
+  developing it using  Ruby, C#, Java, or Javascript, for example, the concept
+  can be applied to different languages and frameworks.
 category: web-api
 tags:
   - web-api solid http mvc
@@ -18,8 +18,8 @@ It has been a while since I did the last post, I was really busy over the last m
 
 You will get a better understanding if you are already familiar with Web APIs, otherwise here you go some good explanations:
 
-- [MuletSoft-What is a web api](https://www.youtube.com/watch?v=s7wmiS2mSXY)
-- [HackerNoon - What are web apis](https://hackernoon.com/what-are-web-apis-c74053fa4072)
+* [MuletSoft-What is a web api](https://www.youtube.com/watch?v=s7wmiS2mSXY)
+* [HackerNoon - What are web apis](https://hackernoon.com/what-are-web-apis-c74053fa4072)
 
 I have been working for Web Api's for the last years and I **have** seemed projects lacking a well-defined architecture which results in more bugs, more time to develop new features, and more time for new developers to understand the code.
 
@@ -27,26 +27,29 @@ I will **not cover** all the differences between all possible architectures/fram
 
 One of the questions I ask my self when starting to develop a new project is: 
 
-> If I need to fix some bug & implement some changes, how easy/guessable is to identify where exactly I need to go to fix this bug? Which folder, which file, which method, which line of code?
+> If I need to fix some bug & change an existent feature, how easy/guessable is to identify where exactly I need to go to fix this bug? Which folder, which file, which method, which line of code?
+>
+> How easy is to test this code?
 
 As developers, we know how good is to work in a project with a clear architecture, where the folder structures and the code are organized in a intuitive and easy way! It saves time and money!
 
 What I mean with this post might not make sense for all cases and you might see production systems using a different approach, by the way, we have many interesting topics and architectures to discuss as for example DDD, CQRS & Event Sourcing, but hopefully, I will talk about them in a separated blog post.
 
-In this short post, I will focus mainly on giving an idea/mindset of view/separate the HTTP Layer/Controllers vs Business Roles (Services, Domains). So this tip will be most related to traditional MVC Frameworks. Does not matter if you are using  Ruby, C#, Java, or Javascript, for example, the concept can be applied to different languages and frameworks.
+> In this short post, I will focus mainly on giving an idea/mindset of view/separate the HTTP Layer/Controllers vs Business Roles (Services, Domains). So this tip will be most related to traditional MVC Frameworks. Does not matter if you are using  Ruby, C#, Java, or Javascript, for example, the concept can be applied to different languages and frameworks.
 
 One of the biggest problems that I have seen when maintaining web APIs is to find `Controllers` with a huge amount of code. I've found controllers with over 500 lines of code for each method. 
+
+I believe that of the most importants principles of clean code and SOLID is the single responsability, a \`class\` shouldn't have many duties and try to do many things, it should be specific and should do specific things.
 
 I will not go through technical architectural steps but instead, I will try to share my a different view about the separation of concerns between the **HTTP LAYER/CONTROLLERS layer** vs **BUSINESS LOGIC/DOMAIN LAYER.**
 
 ## The Business Logic/Domain Layer
 
-The **Business Logic/Domain** layer is responsible to implement all the BUSINESS NEEDS, it's the core part of your system and it's directly related to the business rules. This layer will implement all your client needs, let's suppose the person who hired you to build a system wants to add a new customer in the database, this layer will be responsible to receive the `input` from the front end application, do validations and insert the data on the database and return a result telling if the action was successful or not.
- 
+The **Business Logic/Domain** layer is responsible to implement all the BUSINESS NEEDS, it's the core part of your system and it's directly related to the business rules. This layer will implement all your client needs, let's suppose the person who hired you to build a system wants to add a new customer to the database, this layer will be responsible to receive the `input` from the front end application, do validations and insert the data on the database and return a result telling if the action was successful or not.
 
 The most valuable part of any **enterprise** system is usually this layer as it is directly related to your user's needs This layer is directly related to our database, even though if we have the database operations in a different layer using repository patterns.
 
-This layer usually contains pieces of code called `Services` that executes important task to implement the Business Roles/Needs, for example as add a User:
+This layer usually contains pieces of code commonly called `Services` that executes important task to implement the Business Roles/Needs, for example as add a User:
 
 ```jsx
 service USER_SERVICE {
@@ -152,22 +155,35 @@ I've developed a quick demo that shows an example of how having the controllers 
 
 [https://github.com/lucashfreitas/serverless-clean-api-domain-example](https://github.com/lucashfreitas/serverless-clean-api-domain-example/tree/master/src)
 
-This example doesn't cover all the concepts to build a web API but it's clear to see that difference between the domain and HTTP layer. For this example, I've used AWS Lambda/API Gateway and Serverless framework, but I will cover common frameworks as express, NestJS in the next blog posts.
+This example doesn't go further on all the concepts but tries to  give a general idea of how separate concerns when building an web API but it's clear to see that difference between the domain and HTTP layer. For this example, I've used AWS Lambda/API Gateway and Serverless framework, but I will cover common frameworks as express, NestJS in the next blog posts.
 
-![web-api-folder-structure](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/396d7470-2f86-499f-b2c6-09ce20de821a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200916%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200916T210009Z&X-Amz-Expires=86400&X-Amz-Signature=d84536bbdd9f79a742d84866b548f0d0e3c8e4747d07cd0d38fc0af1bd79329a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+I have also developed an example that have tests and uses specific classes for every requests, methods in Laravel that is available here: <https://github.com/lucashfreitas/laravel-web-api-clean-code>.
+
+## GOING FURTHER
+
+When we talk about SOLID and single responsability we can apply some techniques to make the code even cleaner. 
+
+* What about organizing folders by feature instead of spliting things by type? This usually can bring problems for big problems and usually is not scalable. 
+* What about creating a single class for every request, and this class would be responsable to validate the inputs?
+* What about creating a specific class to handle every api request?
+* What about using the controller only to delegate the incoming request to the correct handler?
+* I have created this repository that shows an example that use some OOP concepts that allow us to abstract common things and focus on business roles. <https://github.com/lucashfreitas/laravel-web-api-clean-code>
 
 ## FINAL THOUGHTS
 
 The main idea of this post is to share a mindset of seeing the HTTP Layer and the Business Layer and architect them in an efficient way.
 
-As I said before, there is no single truth in the software development world, you should understand and observe all the concepts and decide how to apply it in your context, so this situation of having controllers with hundreds of lines of code implementing all the business roles maybe not a problem for you and we have production systems using this, but I want to warn of the downsides of having it on the long term.
+As I said before, there is no single truth in the software development world, you should understand and decide what is the best approach based on your team/project context, but without following clean code/SOLID principles it will become hard to scale and for other developers to work in your code. 
 
 I do have a lot more subjects I want to cover in other blog posts as: 
 
-- **HTTP Protocol:** Is really important to understand this before jumping to web API implementation. What status code should you use?
-- **REST Principle:** How to semantically structure your routes, http methods and status code?
-- Cache, Security, Middleware, Validation
-- DTOS (Data Transfer Objects), Models, Entities: How to relate & map my database entities to my frontend views.
-- SOLID (It will help you apply concepts to build a solid rock architecture and keep your code clean).
+* **HTTP Protocol:** Is really important to understand this before jumping to web API implementation. What status code should you use?
+* **REST Principle:** How to semantically structure your routes, http methods and status code?
+* Cache, Security, Middleware, Validation
+* DTOS (Data Transfer Objects), Models, Entities: How to relate & map my database entities to my frontend views.
+* SOLID (It will help you apply concepts to build a rock solid architecture and keep your code clean).
 
-See you in the next post! 
+
+
+
+See you in the next post!
