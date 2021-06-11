@@ -29,7 +29,7 @@ This will prevent non-critical scripts from blocking DOM parsing/rendering. HTML
 * Some scripts like Google analytics/tag manager are async by nature so you don't need to use these attributes on them.
 * Move non-critical scripts to before the closing of the body and add async/defer to them.|
 
-To fully understand how async/defer work and what is the different between them please visit this link: <https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript>.
+To fully understand how async/defer work and what is the difference between them please visit this link: <https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript>.
 
 _(Huge thanks to Daniel from_ [_https://www.growingwiththeweb.com/_](https://www.growingwiththeweb.com/) _for this image)_
 
@@ -37,13 +37,13 @@ _(Huge thanks to Daniel from_ [_https://www.growingwiththeweb.com/_](https://www
 
 ### 
 
-### 2 - Use Facades to load third party scripts that are not critical to your website load
+### 2 - Use Facades to load third-party scripts that are not critical to your website load
 
 Does your website have a chat widget? They are a really good example of this case. A Facade would be nothing but a FAKE HTML element that visually mimics your real chat widget, but it's actually there only to load the real \`script\` and add it to the page once the user clicks on it. \
 \
 Let's imagine that your website has a Facebook messenger link, instead of loading/parsing the whole javascript you could build a custom html icon using html and CSS and create a \`onclick\` event listener that would load the real chat widget when users click on it. 
 
-Alternatively, you could load it inside the \`load\` event using something like `window.addEventListener('load', (event) => {.` Its better  to use the `load` event instead of `DomContentLoaded` because the second method doesn't wait for all resources download as images, etc. Please read here to understand more about the difference between \`load\` and \`DomContentLoaded\` event. 
+Alternatively, you could load it inside the \`load\` event using something like `window.addEventListener('load', (event) => {.` It's better  to use the `load` event instead of `DomContentLoaded` because the second method doesn't wait for all resources download as images, etc. Please read here to understand more about the difference between \`load\` and \`DomContentLoaded\` event. 
 
 Quote extracted from <https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event>
 
@@ -51,7 +51,7 @@ Quote extracted from <https://developer.mozilla.org/en-US/docs/Web/API/Window/DO
 >
 > A different event, load, should be used only to detect a fully-loaded page. It is a common mistake to use load where DOMContentLoaded would be more appropriate
 
-Another alternative would be to add the script inside the \`load\` event callback, you could event wrap the function into a \`timeout\` callback to make sure that the page would be loaded by the time the script is loaded.
+Another alternative would consist in add the script inside the \`load\` event callback, you could even wrap the function into a \`timeout\` callback to make sure that the page would be loaded by the time the script is loaded.
 
 ```
 window.addEventListener('load', (event) => {
@@ -78,14 +78,14 @@ window.addEventListener('load', (event) => {
 Websites that depend heavily on media such as images, videos need to use tools to make sure that they will be optimized. 
 
 * Offer images in the \`webp\` format as it's usually smaller in size than \`jpeg\`, \`png\`. According to caniuse 91.8% of browsers already support it. 
-* Use responsive images. You can use \`srcset\` and \`sizes\` images attribute to serve different images for different devices sizes. Mobile devices usually doesn't need to serve big images, so you can crop and reduce significavely the size of images. 
+* Use responsive images. You can use \`srcset\` and \`sizes\` images attribute to serve different images for different device sizes. Mobile devices usually don't need to serve big images, so you can crop and reduce the image file size.
 * Compress your images: <https://web.dev/compress-images/>
 * Use tools/CDNs to serve images
 * Please check all the other optimizations here: https://web.dev/fast/#optimize-your-images\
   \
   Thankfully we don't need to spend a huge amount of time trying to figure out how to do all those optimizations and we can use services as <https://cloudinary.com/>, <https://imgix.com/>, to do all the heavy lifting. I quite often say, let's not try to solve all problems in the world, let's focus on solving our business problems and delegate other tasks to who is the best to solve it - so this is a classic example for that.\
   \
-  Nowadays web frameworks already have tools to help with image optimization as **Nextjs** with  \`next/image\` component and **Gatsby** with \`gatsby-image-sharp\` plugin that transforms/optmize images during the build. 
+  Nowadays web frameworks already have tools to help with image optimization as **Nextjs** with  \`next/image\` component and **Gatsby** with \`gatsby-image-sharp\` plugin that transforms/optimize images during the build. 
 
 **References:**
 
@@ -109,7 +109,7 @@ You can also use libraries as <https://github.com/aFarkas/lazysizes>, <https://g
 
 ### 5 - Loading Fonts
 
-We need to make sure that user will see the website content ASAP. You can use \`@font-face\` \`font-display\` property to tell browsers to display an alternative font if the website font is still not downloaded. This will helps as the user will see the text content faster instead of waiting for the font to be downloaded. 
+We need to make sure that users will see the website content ASAP. You can use \`@font-face\` \`font-display\` property to tell browsers to display an alternative font if the website font is still not downloaded. This will helps as the user will see the text content faster instead of waiting for the font to be downloaded. 
 
 Some formats as \`woff2\` have better compression and are smaller in size but aren't supported in all devices, but you can tell the browser to use if it's supported and provide alternative formats like \`ttf\` if not. You can also use the \`local\` attribute and the browser will first check if the user has the font installed locally instead of trying to download it straight away.
 
@@ -140,9 +140,9 @@ Your website is composed of pages that depend on HTML, CSS, and JavaScript code.
 
 **Tree Shaking:** Let's suppose you are using \`bootstrap.css\` in your project, but the home page only uses two types of classes coming from bootstrap \`col-lg-12\` and \`col-md-6\`. In this case doesn't make sense to load the whole \`boostrap.css\` file as your page only uses two classes of it, so you make sense to purge all other classes and reduce the bootstrap.css size.
 
-**Code Splitting:** Let's suppose that you have a huge javascript script called \`main.min.js\`. The Home Page depends only on 10% of it, and the about page only uses 7% of it, what if we split this big script into multiple chunks? Then the home page would load only the chunk that contains the 10% that it needs, avoiding loading.  Afterward, when users navigate to About Page the browser will request and load in runtime the other chunk needed by the About Page.\
+**Code Splitting:** Let's suppose that you have a huge javascript script called \`main.min.js\`. The **Home Page** depends only on 10% of it, and the about page only uses 7% of it, what if we split this big script into multiple chunks? Then the **Home Page** would load only the chunk that contains the 10% that it needs, avoiding loading.  Afterward, when users navigate to **About Page** the browser will request and load in runtime the other chunk needed by the **About Page**.\
 \
-This is not a trivial task but you will find techniques/libraries to help you to achieve that. Some frameworks like Angular, NextJS, Tailwindcss already handle that by default. Bundle tools as webpack can help to achieve that. Another cool example is the awesome library <https://purgecss.com/> . It analyzes your content and css files and automatically purges any unused css code which helps to reduce the bundle size.
+This is not a trivial task but you will find techniques/libraries to help you to achieve that. Some frameworks like Angular, NextJS, Tailwindcss already handle that by default. Bundle tools as webpack can help to achieve that. Another cool example is the awesome library <https://purgecss.com/> . It analyzes your content and CSS files and automatically purges any unused CSS code which helps to reduce the bundle size.
 
 \
 **References:**
@@ -157,7 +157,7 @@ When a browser needs to load an external link a lot of things happen in the back
 > The preload value of the <link> element's rel attribute lets you declare fetch requests in the HTML's <head>, specifying resources that your page will need very soon, which you want to start loading early in the page lifecycle, before browsers' main rendering machinery kicks in. This ensures they are available earlier and are less likely to block the page's render, improving performance.
 
 \
-Some cool libraries like <https://github.com/guess-js/guess>  can go even further. It analyzes google analytcs data and finds out ("guess") what pages users are likely to navigate from a specific page, then it's prefetch the content for the next page.
+Some cool libraries like <https://github.com/guess-js/guess>  can go even further. It analyzes google analytics data and finds out ("guess") what pages users are likely to navigate from a specific page, then it prefetches the content for the next page.
 
 **References:**
 
@@ -166,13 +166,13 @@ Some cool libraries like <https://github.com/guess-js/guess>  can go even furthe
 
 ### 8 - Reduce your server response time.
 
-This task does not have a definitive solution and it's more related with the infrastructure/framework you are using to develop/deploy your website, but there is some basic techniques/concepts we can apply:
+This task does not have a definitive solution and it's more related to the infrastructure/framework your team are using to develop/deploy your website, but there is some basic techniques/concepts we can apply:
 
-* Try to cache content and minimize calls to the database. In distributed system context IO operations such as database calls usually tend to be the pitfall of application performance. You can use cache solutions as \`redis\` to minimize database/network calls and delivery faster responses.
+* Try to cache content and minimize calls to the database. In distributed system context, IO operations such as database calls usually tend to be the pitfall of applications performance. You can use cache solutions as \`redis\` to minimize database/network calls and delivery faster responses.
 * You can use CDN caches to deliver your content with low latency from anywhere in the globe. You can also serve your website files using proper cache headers, then frequent visitors won't need to do request to the server again to download the files. In this article, I did a deep dive on CDN x Browser caching <https://lucasfsantos.com/posts/deploy-react-angular-cloudfront/>
-* You can add compression GZIP/Brotli to reduce the file size.
+* You can add compression GZIP/Brotli to reduce the files size.
 * Check your hosting settings and if you're using services as Nginx and Apache they all have guidelines for optimization.
-* Use Http2. The protocol Http 2 comes with cool features such as allow browsers to resolve multiple requests at the same, it also uses TCP header compressions. Please read this article to know more about: <https://http2.github.io/faq/>
+* Use Http2. The protocol Http 2 comes with cool features that allow browsers to resolve multiple requests at the same, it also uses TCP header compressions. Please read this article to know more about it: <https://http2.github.io/faq/>
 
 **References:**
 
@@ -181,7 +181,7 @@ This task does not have a definitive solution and it's more related with the inf
 
 ### 9 - Monitoring
 
-We are constantly rolling updates to our websites, adding new features, and fixing bugs, so it's important to measure how those changes are impacting the website performance. You can use tools like <https://github.com/GoogleChrome/lighthouse-ci> to automatically run page speed tests during your CI/CD pipeline and even block a deployment if the speed score goes below a value. and it's important to measure if those changes will affect the website's performance. 
+We are constantly rolling updates to our websites, adding new features, and fixing bugs, so it's important to measure how those changes are impacting the website performance. You can use tools like <https://github.com/GoogleChrome/lighthouse-ci> to automatically run page speed tests during your CI/CD pipeline and even stop/fail a deployment if the speed score goes below a certain range. 
 
 **References:**
 
@@ -189,9 +189,9 @@ We are constantly rolling updates to our websites, adding new features, and fixi
 
 ### 10 - Never stop learning and keep yourself updated - Check out this course and book
 
-Keep yourself up to date with all the changes and try to research tools/libraries that can help you to make your website faster. As I mentioned before most of the frameworks already have tools to help us with this task. 
+Keep yourself up to date with all the changes and try to research tools/libraries that can help you to make your website faster. As I mentioned before most of the frameworks already have tools to help with that.
 
-Try to understand concepts and metrics used in page speed tests and definitely read blog posts at https://web.dev, they are really helpful and have a lot of awesome content.
+Try to understand concepts and metrics used in page speed tests and definitely read blog posts at <https://web.dev>, they are really helpful and have a lot of awesome content.
 
 I could not also forget to recommend those extra courses / book:
 
