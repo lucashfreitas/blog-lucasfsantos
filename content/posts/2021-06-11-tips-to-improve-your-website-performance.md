@@ -1,7 +1,7 @@
 ---
 template: post
-title: 10 Tips to improve your website performance
-slug: improve-your-website-performance
+title: Checklist improve your website performance
+slug: checklist-improve-website-performance
 draft: false
 date: 2021-06-11T11:25:04.282Z
 description: 'Having a fast website is not only important for SEO purposes but it''s also '
@@ -72,8 +72,7 @@ window.addEventListener('load', (event) => {
 
 ### 3 - Optimize your images, use responsive sizes and offer webp format.
 
-Websites that depends heavily on media such as images, videos needs to use tools to make sure that they will be optimized. \
-\
+Websites that depends heavily on media such as images, videos needs to use tools to make sure that they will be optimized. 
 
 * Offer images in the \`webp\` format as it's usually smaller in size than \`jpeg\`, \`png\`. According to caniuse 91.8% of browsers already support it. <https://web.dev/serve-images-webp/>\
 * Use responsive images. You can use \`srcset\` and \`sizes\` images attribute to serve different images for different devices sizes. Mobile devices usually doesn't need to serve big images, so you can crop and reduce significavely the size of images. Read more here: <https://web.dev/fast/#optimize-your-images>\
@@ -133,12 +132,26 @@ _Extracted from_ [_https://web.dev/reduce-webfont-size/_](https://web.dev/reduce
 
 ### 6 - Code Split/Tree Shaking:
 
-Depending on the framework you're using, React, Angular, Vue they all have resources to load only the necessary scripts for each page and instead of having a big chunck of javascript/css you will load only the exactly necessary script for a page.
+Your website is composed by pages that depends on HTML, CSS and JavaScript code. Code splitting is the process that makes sure that you page **only** loads the CSS/JavaScript it needs to be loaded. Tree Shaking makes sure to remove any code that is **unused** by your website.
 
-You can use gulp, purgecss, postcss, but most of the frameworks like NextJS, Nuxt will handle that for you. Tailwind has also an awesome feature that automatically strips out any unused css.
+**Tree Shaking:** Let's suppose you are using \`bootstrap.css\` in your project, but the home page only use two type of classes coming from bootstrap \`col-lg-12\` and \`col-md-6\`. In this case doesn't make sense to load the whole \`boostrap.css\` file as your page only uses two classes of it, so you make sense to purge all other classes and reduce the bootstrap.css size.
 
-<https://purgecss.com/>
-<https://web.dev/code-splitting-suspense/>
+**Code Spliting:** Let's supose that you have a huge javascript script called \`main.min.js\`. The Home Page depends only of 10% of it, and the about page only uses 7% of it, what about spliting this script in multiple scripts file and when the home page loads it will load only the 10% that it uses and when users navigate to About Page we will load the other chunk of script that the page needs. This process is 
+
+
+
+Techniques of tree shaking consist in analyzing your pages templates/components and identifying which css/javascript code your page depends on, then it will import only it. \
+\
+This is not a trivial work but you will find techniques/libraries to help you to achieve that. Some frameworks like Angular, NextJS, Tailwindcss already handle that by default. Bundle tools as web pack also allow to use techniques of tree shaking.
+
+<https://purgecss.com/> is an awesome library that analyzes your content and css files and can automatically purge any unused css, this helps to reduce the css size.
+
+\
+**References:**
+
+* <https://purgecss.com/>
+* <https://web.dev/code-splitting-suspense/>
+* 
 
 ### 7 - Preload external references
 
