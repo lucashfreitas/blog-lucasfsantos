@@ -1,102 +1,135 @@
 ---
 template: post
-title: Tips to improve your website performance
+title: 10 Tips to improve your website performance
 slug: improve-your-website-performance
 draft: false
 date: 2021-06-11T11:25:04.282Z
 description: 'Having a fast website is not only important for SEO purposes but it''s also '
 category: web-development performance
 ---
-Improving your website speed can bring many benefits as it will improve user experiences and also will improve your website SEO ranking. This article was mainly inspired by the awesome content available at https://developers.google.com/ and https://web.dev. If you don't know them yet you should have a look.
+Improving your website speed can bring many benefits as  improve user experience and also get better SEO ranking. This article was heavily inspired by the content available at <https://developers.google.com/> and <https://web.dev>, do not forget to check it out as both of these websites contain high quality content for web development in general.\
+\
+It's not new that as fast as your website is it will have better results on google ranking and also users will have a better experience as mentioned [here](https://developers.google.com/web/updates/2018/07/search-ads-speed).\
+\
+This article does not aim to dive deep in each topic but instead give a direction on how to optimize your website speed. All sections have references to articles at [web.dev](https://web.dev). A lot of tools and frameworks like NextJS, Gatsby, Nuxt, etc have tools/libraries that does a lot of those things for will, but once you grasp the basic concepts you should be able to research and find good tools for whatever framework/language you are using, that's what this article aims to, more to give a direction.\
+\
+Some important concepts:
 
+* **LCP: Largest Contentful Paint**: Basically it calculates what is the time that the website takes to load all the visible content at the screen when your website first load. Please read more here: https://web.dev/lcp
 
+Ok, let's dive in:
 
+### 1 - Use async/defer to load non critical scripts and move it before the <body> closing tag.
 
+This will prevent non critical scripts from blocking DOM parsing/rendering. HTML renders the DOM starting from the Head until the end of the document, so if you have a script in the head the browser will download and parse it which will delay the rendering process. If you use attributes as defer and async the browser will wait until the DOM is loaded before running the script. 
 
-### 1 - Use async/defer to load non critical scripts and move it before the <body> closing.
+* Some scripts like Google analytics/tag manager are async by nature so you don't need to use these attributes on them.
+* Move non critical scripts to before the closing of body and add async/defer to them.|
 
-This will prevent non critical scripts from blocking DOM parsing/rendering.
+To fully understand how async/defer work and what is the different between them please visit this link: <https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript>.
 
-* Google analytics/tag manager are async by default so you don't need to use this on them.
-* Move non crictical scripts to before the closing of body and add async/defer to them, to understand more about the difference between them
+_(Huge thanks to Daniel from_ [_https://www.growingwiththeweb.com/_](https://www.growingwiththeweb.com/) _for this image)_
 
-**References:**
+![Async defer](/media/async-defer.png "Async defer")
 
-[https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript#:~:text=With async%2C the browser downloads,to parse the HTML document](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript#:~:text=With%20async%2C%20the%20browser%20downloads,to%20parse%20the%20HTML%20document).
+### 
 
-### 2 - Use Facades to load third party scripts that are not critical to your website load. 
+### 2 - Use Facades to load third party scripts that are not critical to your website load.
 
-### E.g, create a "fake" chat widget and then when user clicks on it you load the original <script> or load then inside DOM events such as window.onload.
+Does your website has a chat widget? They are a really good example for this one. A Facade would be nothing but a FAKE HTML element that visually mimics your real chat widget, but actually it's there only to load the real \`script\` and add it to the page once the user clicks on it. \
+\
+Let's imagine that your website have a facebook messenger link, instead of loading/parsing the whole javascript you could build a custom html icon using html and CSS and create a \`onclick\` event listener that would load the real chat widget when users clicks on it. 
 
-Chat widgets are a perfect example for this problem. You can build a Facade which is basically a FAKE HTML element that loads the original element when clicked. You would have a HTML element that would looks like the real chat widget but it would have a onclick handler event and then would insert the script in page.
+Alternatively you could load it inside the \`load\` event using something like `window.addEventListener('load', (event) => {.` Its better  to use the `load` event instead of `DomContentLoaded` because the second method doesn't wait for all resources download as images, etc. Please read here to understand more about the different between \`load\` and \`DomContentLoaded\` event. 
 
-Alternatively you could load it inside `window.addEventListener('load', (event) => {.` You need to use the `load` event instead of `DomContentLoaded` because the second method doesn't wait for all resources download as images, etc, just DOM parsing. 
+Quote extracted from <https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event>
 
-It's a workaround but you could also wrap the function inside the `load` event inside a timeout, here goes an example:
+> The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+>
+> A different event, load, should be used only to detect a fully-loaded page. It is a common mistake to use load where DOMContentLoaded would be more appropriate
 
-```jsx
+Another alternative would be to add the script inside the \`load\` event callback, you could event wrap the function into a \`timeout\` callback to make sure that the page would be loaded by the time the script is loaded.
+
+```
 window.addEventListener('load', (event) => {
-
-setTimeout(function() {
-//library
-(function () {
-var s = document.createElement('script');
-s.type = 'text/javascript';
-s.async = true;
-s.src = 'https://YOUR_SCRIPT_TAG.js';
-var x = document.getElementsByTagName('script')[0];
-x.parentNode.insertBefore(s, x);
-
-})();
-
-}, 3000);
+  setTimeout(function() {
+  //this function will add the script to the head
+  (function () {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://YOUR_SCRIPT_TAG.js';
+  var x = document.getElementsByTagName('script')[0];
+  x.parentNode.insertBefore(s, x);
+  })();
+  }, 3000);
 });
 ```
 
-### 3 - Optimise your images using responsive sizes for different device sizes and offer webp format. You can use services as cloudinary or imagemx for that.
+**References:**
 
-Always ship images from CDN and using responsive sizes + webp format. Services as cloudinary can do all the heavy lifting here. Gatsby and next also have pre built in components that does not `gatsby-image-sharp` and `next/image`.
+* <https://web.dev/third-party-facades/>
+
+### 3 - Optimize your images, use responsive sizes and offer webp format.
+
+Websites that depends heavily on media such as images, videos needs to use tools to make sure that they will be optimized. \
+\
+
+* Offer images in the \`webp\` format as it's usually smaller in size than \`jpeg\`, \`png\`. According to caniuse 91.8% of browsers already support it. <https://web.dev/serve-images-webp/>\
+* Use responsive images. You can use \`srcset\` and \`sizes\` images attribute to serve different images for different devices sizes. Mobile devices usually doesn't need to serve big images, so you can crop and reduce significavely the size of images. Read more here: <https://web.dev/fast/#optimize-your-images>\
+* Compress your images: https://web.dev/compress-images/\
+* Use tools/CDNs to serve  images <https://web.dev/image-cdns/>\
+  Please check all the other optimizations here: https://web.dev/fast/#optimize-your-images\
+  \
+  But... how to achieve all of that? Thankfully we don't need to spend a huge amount of time trying to firgure it out and we can use services asl <https://cloudinary.com/>, <https://imgix.com/>, to do all the heavy lifting. I quite often say, let's not try to solve all problems in the world, let's focus on solving our business problems and delegate other tasks to who is the best to solve it - so this is a classic example for that.\
+  \
+  A lot of frameworks also already have tools to help on optmizing images as nextjs that have \`next/image\` component and gatsby with \`gatsby-image-sharp\` plugin that transform/optmize images at the build time. 
 
 **References:**
-<https://web.dev/fast/#optimize-your-images>
+
+* <https://web.dev/serve-responsive-images>
+* <https://web.dev/fast/#optimize-your-images>
 
 ### 4 - Lazy Load images.
 
-You can use Interest Browser API or scroll events (not so performatic) and some bowsers as chrome already support the lazy it natively.
+Let's suppose that a page has 10 images, but when users load it they'll see only 2 of them, so why not only load 2 images and as soon as the user scroll downs in the page we load the rest? \
+\
+You can use Interest Browser API, scroll events listeners and some bowsers as chrome already support the \`image\` lazy attribute natively. <https://caniuse.com/loading-lazy-attr> (_As today 12/06/2021 70% of browsers already support it_).
+
+You can also use libraries as <https://github.com/aFarkas/lazysizes>, <https://github.com/mfranzke/loading-attribute-polyfill>, <https://github.com/malchata/yall.js> to help with that.
 
 **References:**
 
-<https://caniuse.com/loading-lazy-attr> (As today 10/06/2021 70% of browsers already support it)
-<https://github.com/mfranzke/loading-attribute-polyfill>
-
-https://web.dev/browser-level-image-lazy-loading/.  
-
-<https://github.com/aFarkas/lazysizes>
-<https://github.com/malchata/yall.js>
+* <https://web.dev/browser-level-image-lazy-loading/>
 
 ### 5 - Loading Fonts
 
-We need to make sure that user will see the website content ASAP. You can use @font-face attribute tell the browser to display an alternative font if the used font is still not downloaded, that will helps as the users won't need to wait font to be loaded to see the content.
+We need to make sure that user will see the website content ASAP. You can use \`@font-face\` \`font-display\` property to tell browsers to display an alternative font if the website font is still not downloaded. This will helps as the user will see the text content faster instead of waiting for the font to be downloaded. 
 
-Also include multiple versions of your fonts and give prefference for compressed formats as described here:
+Some formats as \`woff2\` have better compression and are smaller in size but aren't supported in all browsers, but you can tell the browser to use if it's supported. You can also use the \`local\` attribute and the browser will first check if the user has the font installed locally instead of trying to download it.
 
-<https://web.dev/reduce-webfont-size/>
-
-Add **swap** attribute to tell browser to display the default font while the main font is still being downloaded:
-
-```jsx
+```css
 @font-face {
-    font-display: swap; //display the default font 
-    font-family: 'yOur fonts';
-    font-weight: normal;
-    src: url("../fonts/YourFont.otf") format("opentype");
+  font-family: 'Awesome Font';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Awesome Font'),
+        url('/fonts/awesome-l.woff2') format('woff2'),
+        url('/fonts/awesome-l.woff') format('woff'),
+        url('/fonts/awesome-l.ttf') format('truetype'),
+        url('/fonts/awesome-l.eot') format('embedded-opentype');
+  unicode-range: U+000-5FF; /* Latin glyphs */
 }
 ```
 
+_Extracted from_ [_https://web.dev/reduce-webfont-size/_](https://web.dev/reduce-webfont-size/)__
+
 **References**:
 
-<https://web.dev/optimize-webfont-loading/>
-<https://web.dev/reduce-webfont-size/>
+* <https://web.dev/optimize-webfont-loading/>
+* <https://web.dev/reduce-webfont-size/>
+
+
 
 ### 6 - Code Split/Tree Shaking:
 
