@@ -5,14 +5,14 @@ slug: 10-tips-improve-website-performance
 draft: false
 date: 2021-06-11T11:25:04.282Z
 description: >-
-  Increasing your website speed can bring many benefits, not only related to
-  user experience but also improve your SEO results/google ranking score. This
+  Increasing your website speed can have many benefits, not only related to user
+  experience but also improve your SEO results/google ranking score. This
   article was heavily inspired by the content available at
   https://developers.google.com/ and https://web.dev and brings some
   tips/concepts to make your website faster.
 category: web-development performance
 ---
-Increasing your website speed can bring many benefits, not only related to user experience but also improve your SEO results/google ranking score. This article was heavily inspired by the content available at <https://developers.google.com/> and <https://web.dev> and brings some tips/concepts to make your website faster. 
+Increasing your website speed can have many benefits, not only related to user experience but also improve your SEO results/google ranking score. This article was heavily inspired by the content available at <https://developers.google.com/> and <https://web.dev> and brings some tips/concepts to make your website faster. 
 
 I have added a lot of high-quality links alongside this post, so I really recommend you have a look at all of them!
 
@@ -22,7 +22,7 @@ Instead of dive deep into each topic, this article aims to give a direction on h
 
 Okaay, let's start:
 
-### 1 - Use async/defer to load non-critical scripts and move them before the <body> closing tag
+### 1 - Use async/defer to load non-critical scripts and move them before the body closing tag
 
 This will prevent non-critical scripts from blocking DOM parsing/rendering. HTML renders the DOM starting from the Head until the end of the document, so if you have a script in the head the browser will download and parse it which will delay the rendering process. If you use attributes as defer and async the browser will wait until the DOM is loaded before running the script. 
 
