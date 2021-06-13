@@ -85,7 +85,7 @@ Websites that depend heavily on media such as images, videos need to use tools t
   \
   Thankfully we don't need to spend a huge amount of time trying to figure out how to do all those optimizations and we can use services as <https://cloudinary.com/>, <https://imgix.com/>, to do all the heavy lifting. I quite often say, let's not try to solve all problems in the world, let's focus on solving our business problems and delegate other tasks to who is the best to solve it - so this is a classic example for that.\
   \
-  Nowadays web frameworks already have tools to help with image optimization as **Nextjs** with  \`next/image\` component and **Gatsby** with \`gatsby-image-sharp\` plugin that transforms/optimize images during the build. 
+  Nowadays web frameworks already have tools to help with image optimisation as **Nextjs** with  \`next/image\` component and **Gatsby** with \`gatsby-image-sharp\` plugin that transforms/optimize images during the build. 
 
 **References:**
 
@@ -142,7 +142,7 @@ Your website is composed of pages that depend on HTML, CSS, and JavaScript code.
 
 **Code Splitting:** Let's suppose that you have a huge javascript script called \`main.min.js\`. The **Home Page** depends only on 10% of it, and the about page only uses 7% of it, what if we split this big script into multiple chunks? Then the **Home Page** would load only the chunk that contains the 10% that it needs, avoiding loading.  Afterward, when users navigate to **About Page** the browser will request and load in runtime the other chunk needed by the **About Page**.\
 \
-This is not a trivial task but you will find techniques/libraries to help you to achieve that. Some frameworks like Angular, NextJS, Tailwindcss already handle that by default. Bundle tools as webpack can help to achieve that. Another cool example is the awesome library <https://purgecss.com/> . It analyzes your content and CSS files and automatically purges any unused CSS code which helps to reduce the bundle size.
+This is not a trivial task but you will find techniques/libraries to help you to achieve that. Some frameworks like Angular, NextJS, Tailwindcss already handle that by default. Bundle tools as webpack can help to achieve that. Another cool example is the awesome library <https://purgecss.com/> . It analyses your content and CSS files and automatically purges any unused CSS code which helps to reduce the bundle size.
 
 \
 **References:**
@@ -171,7 +171,7 @@ This task does not have a definitive solution and it's more related to the infra
 * Try to cache content and minimize calls to the database. In distributed system context, IO operations such as database calls usually tend to be the pitfall of applications performance. You can use cache solutions as \`redis\` to minimize database/network calls and delivery faster responses.
 * Use CDN caches to deliver your content with low latency from anywhere in the globe. You can also serve your website files using proper cache headers, then frequent visitors won't need to do request to the server again to download the files. In this article, I did a deep dive on CDN x Browser caching <https://lucasfsantos.com/posts/deploy-react-angular-cloudfront/>
 * Add compression GZIP/Brotli to reduce the files size.
-* Check your hosting settings: Services like **Nginx** and **Apache** have guidelines for optimization.
+* Check hosting settings: Services like **Nginx** and **Apache** have guidelines for optimisation.
 * Use Http2. The protocol Http 2 comes with cool features that allow browsers to resolve multiple requests at the same, it also uses TCP header compressions. Please read this article to know more about it: <https://http2.github.io/faq/>
 
 **References:**
@@ -191,9 +191,9 @@ We are constantly rolling updates to our websites, adding new features, and fixi
 
 Keep yourself up to date with all the changes and try to research tools/libraries that can help you to make your website faster. As I mentioned before most of the frameworks already have tools to help with that.
 
-Try to understand concepts and metrics used in page speed tests and definitely read blog posts at <https://web.dev>, they are really helpful and have a lot of awesome content.
+Try to understand concepts and metrics used in page speed tests and definitely read blog posts at <https://web.dev>.
 
-I could not also forget to recommend those extra courses / book:
+I also strongly recommend this extra course & book:
 
 * **Udacity Course**: <https://www.udacity.com/course/website-performance-optimization--ud884>
 * **Book**: <https://www.amazon.com/gp/product/B00FM0OC4S/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i0>
