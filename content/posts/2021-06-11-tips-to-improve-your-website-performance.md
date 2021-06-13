@@ -169,9 +169,9 @@ Some cool libraries like <https://github.com/guess-js/guess>  can go even furthe
 This task does not have a definitive solution and it's more related to the infrastructure/framework your team are using to develop/deploy your website, but there is some basic techniques/concepts we can apply:
 
 * Try to cache content and minimize calls to the database. In distributed system context, IO operations such as database calls usually tend to be the pitfall of applications performance. You can use cache solutions as \`redis\` to minimize database/network calls and delivery faster responses.
-* You can use CDN caches to deliver your content with low latency from anywhere in the globe. You can also serve your website files using proper cache headers, then frequent visitors won't need to do request to the server again to download the files. In this article, I did a deep dive on CDN x Browser caching <https://lucasfsantos.com/posts/deploy-react-angular-cloudfront/>
-* You can add compression GZIP/Brotli to reduce the files size.
-* Check your hosting settings and if you're using services as Nginx and Apache they all have guidelines for optimization.
+* Use CDN caches to deliver your content with low latency from anywhere in the globe. You can also serve your website files using proper cache headers, then frequent visitors won't need to do request to the server again to download the files. In this article, I did a deep dive on CDN x Browser caching <https://lucasfsantos.com/posts/deploy-react-angular-cloudfront/>
+* Add compression GZIP/Brotli to reduce the files size.
+* Check your hosting settings: Services like **Nginx** and **Apache** have guidelines for optimization.
 * Use Http2. The protocol Http 2 comes with cool features that allow browsers to resolve multiple requests at the same, it also uses TCP header compressions. Please read this article to know more about it: <https://http2.github.io/faq/>
 
 **References:**
