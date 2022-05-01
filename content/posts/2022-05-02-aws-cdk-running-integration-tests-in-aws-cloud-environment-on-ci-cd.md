@@ -2,7 +2,7 @@
 template: post
 title: 'AWS CDK: Running Integration Tests in AWS cloud environment on CI/CD.'
 slug: aws-cdk-integration-tests
-draft: true
+draft: false
 date: 2022-05-01T11:57:43.146Z
 description: >-
   With the evolution of tools that allow us to deploy infrastructure in a few
