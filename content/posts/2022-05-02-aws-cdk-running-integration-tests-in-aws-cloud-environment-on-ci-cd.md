@@ -1,6 +1,8 @@
 ---
 template: post
-title: 'AWS CDK: Running Integration Tests in real AWS cloud environment on CI/CD.'
+title: >-
+  AWS CDK: Running Integration Tests in real AWS cloud environment using Github
+  Actions.
 slug: aws-cdk-integration-tests
 draft: false
 date: 2022-05-01T11:57:43.146Z
