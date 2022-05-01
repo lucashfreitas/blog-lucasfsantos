@@ -20,7 +20,7 @@ With the evolution of tools that allow us to deploy infrastructure in a few seco
 
 I won't dive deep into the discussion of the differences between unit/end to end vs integration tests, but I do believe that integration tests are one of the most valuable tools to validate our systems & business rules. I'd recommend a read on [Kent C Dods](https://kentcdodds.com/blog/write-tests) article on this. 
 
-The most important part of any system/software is usually the businesses roles, the user histories, e.g a User wants to add a product to the database, so integration tests allow to test individual roles and usually don't take as much time to develop end to end tests across a full-stack application. 
+The most important part of any system/software are usually the businesses roles, the user histories, e.g a  user wants to add a product to the database, so integration tests allow to test individual roles and usually don't take as much time to develop end to end tests across a full-stack application. 
 
 We have great tools that offer and try to mock the same environment that we would have in a real cloud environment, for example in memory-databases, and tools like [LocalStack](https://github.com/localstack/localstack)  (which I personally think it's great). 
 
@@ -192,8 +192,6 @@ In this example, the whole test took only 4 minutes (Of course this will be much
 ![Pipeline Execution](/media/screen-shot-2022-05-02-at-12.50.54-am.png "Pipeline Execution")
 
 ![Pipeline Execution](/media/screen-shot-2022-05-02-at-12.50.38-am.png "Pipeline Execution")
-
-
 
 ## That's it
 
